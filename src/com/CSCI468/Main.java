@@ -11,20 +11,25 @@ import com.CSCI468.ANTLROut.testLexer;
  */
 public class Main {
     public static void main(String[] args){
+
+        //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
+        //generateFiles();
+
+        ANTLRInputStream in = new ANTLRInputStream("hello");
+        testLexer lexer = new testLexer(in);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        testParser parser = new testParser(tokens);
+        System.out.println(parser.r());
+    }
+
+    public static void generateFiles(){
         //generates antlr files to be used to parse
         //putTower location
         String putTower = "D:\\Documents\\Compilers\\res\\Grammars\\test.g4";
         //putLaptop location
         String putLaptop = "C:\\Users\\robertp\\IdeaProjects\\Compilers\\res\\Grammars\\test.g4";
 
-        String[] arg0 = { "-visitor", putLaptop, "-package", "com.CSCI468.ANTLROut", "-o", "D:\\Documents\\Compilers\\src\\com\\CSCI468\\ANTLROut" };
+        String[] arg0 = { "-visitor", putTower, "-package", "com.CSCI468.ANTLROut", "-o", "D:\\Documents\\Compilers\\src\\com\\CSCI468\\ANTLROut" };
         org.antlr.v4.Tool.main(arg0);
-
-
-        ANTLRInputStream in = new ANTLRInputStream("Hello, asdf;lkhgHello,aasdkljhasdlgk");
-        testLexer lexer = new testLexer(in);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        testParser parser = new testParser(tokens);
-        System.out.println(parser.r());
     }
 }

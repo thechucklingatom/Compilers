@@ -17,7 +17,7 @@ public class testParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, ID=2, WS=3;
+		ID=1, WS=2;
 	public static final int
 		RULE_r = 0;
 	public static final String[] ruleNames = {
@@ -25,10 +25,9 @@ public class testParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'hello'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, "ID", "WS"
+		null, "ID", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -107,8 +106,6 @@ public class testParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(2);
-			match(T__0);
-			setState(3);
 			match(ID);
 			}
 		}
@@ -124,9 +121,8 @@ public class testParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\5\b\4\2\t\2\3\2\3"+
-		"\2\3\2\3\2\2\2\3\2\2\2\6\2\4\3\2\2\2\4\5\7\3\2\2\5\6\7\4\2\2\6\3\3\2\2"+
-		"\2\2";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\7\4\2\t\2\3\2\3"+
+		"\2\3\2\2\2\3\2\2\2\5\2\4\3\2\2\2\4\5\7\3\2\2\5\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
