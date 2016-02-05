@@ -19,7 +19,8 @@ public class Main {
         testLexer lexer = new testLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         testParser parser = new testParser(tokens);
-        System.out.println(parser.r());
+        parser.r();
+        System.out.println(tokens.get(0).getText());
     }
 
     public static void generateFiles(){
