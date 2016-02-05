@@ -38,7 +38,7 @@ public class Main {
         //putLaptop location
         String putLaptop = "C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4";
 
-        String[] arg0 = { "-visitor", putLaptop, "-package", "com.CSCI468.ANTLROut", "-o", "D:\\Documents\\Compilers\\src\\com\\CSCI468\\ANTLROut" };
+        String[] arg0 = { "-visitor", putLaptop, "-package", "com.CSCI468.ANTLROut", "-o", "C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\com\\CSCI468\\ANTLROut" };
         org.antlr.v4.Tool.main(arg0);
     }
 }

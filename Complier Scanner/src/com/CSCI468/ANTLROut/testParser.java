@@ -1,4 +1,4 @@
-// Generated from D:\Documents\Compilers\res\Grammars\test.g4 by ANTLR 4.5.1
+// Generated from C:\Users\Brendan Burns\Documents\GitHub\Compilers\Complier Scanner\src\res\Grammars\test.g4 by ANTLR 4.5.2
 package com.CSCI468.ANTLROut;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class testParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.5.1", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.5.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -80,6 +80,7 @@ public class testParser extends Parser {
 	}
 	public static class RContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(testParser.ID, 0); }
+		public TerminalNode WS() { return getToken(testParser.WS, 0); }
 		public RContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -102,11 +103,17 @@ public class testParser extends Parser {
 	public final RContext r() throws RecognitionException {
 		RContext _localctx = new RContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_r);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(2);
-			match(ID);
+			_la = _input.LA(1);
+			if ( !(_la==ID || _la==WS) ) {
+			_errHandler.recoverInline(this);
+			} else {
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -122,7 +129,7 @@ public class testParser extends Parser {
 
 	public static final String _serializedATN =
 		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\7\4\2\t\2\3\2\3"+
-		"\2\3\2\2\2\3\2\2\2\5\2\4\3\2\2\2\4\5\7\3\2\2\5\3\3\2\2\2\2";
+		"\2\3\2\2\2\3\2\2\3\3\2\3\4\5\2\4\3\2\2\2\4\5\t\2\2\2\5\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
