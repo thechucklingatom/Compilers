@@ -1,4 +1,5 @@
 grammar test;
-r : 'hello' ID;
-ID : [a-z]+ ;
-WS : [ \t\n]+ -> skip ;
+
+r : ID;
+ID : [a-z]+ {System.out.println("found something");};
+WS : [ \t\n]+ {};
