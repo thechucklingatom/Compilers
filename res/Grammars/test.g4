@@ -1,5 +1,5 @@
 grammar test;
 
-r : ID;
-ID : [a-z]+ {System.out.println("found something");};
-WS : [ \t\n]+ {};
+r : ID | WS ;
+ID : [A-Za-z ]+ {System.out.println("found something");};
+WS : [ \t\n\r]+ ;
