@@ -18,7 +18,7 @@ public class Main {
         //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
         //generateFiles();
 
-        ANTLRFileStream fileStream = new ANTLRFileStream("src/res/Step1/inputs/loop.micro");
+        ANTLRFileStream fileStream = new ANTLRFileStream("res/Step1/inputs/loop.micro");
         ANTLRInputStream in = new ANTLRInputStream("hello");
 
         testLexer lexer = new testLexer(fileStream);
@@ -27,18 +27,24 @@ public class Main {
         parser.r();
         //parser.r();
         for(int i = 0; i < tokens.size(); i++){
-            System.out.println(tokens.get(i));
+            if(tokens.get(i).getType()-1 < 0){
+                System.out.println(""); 
+            }else{
+                System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
+                System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", "newline"));
+            } 
+            
         }
     }
 
     public static void generateFiles(){
         //generates antlr files to be used to parse
-        //putTower location
-        String putTower = "C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4";
-        //putLaptop location
-        String putLaptop = "C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4";
+        //location 0 = burns, 1 = putnamTower, 2 = putnamLaptop
+        String[] location = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4", "res/Grammars/test.g4"};
+        //compiled output location
+        String[] output = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\com\\CSCI468\\ANTLROut", "src\\com\\CSCI468\\ANTLROut"};
 
-        String[] arg0 = { "-visitor", putLaptop, "-package", "com.CSCI468.ANTLROut", "-o", "C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\com\\CSCI468\\ANTLROut" };
+        String[] arg0 = { "-visitor", location[1], "-package", "com.CSCI468.ANTLROut", "-o", output[1] };
         org.antlr.v4.Tool.main(arg0);
     }
 }

@@ -1,4 +1,4 @@
-// Generated from C:\Users\Brendan Burns\Documents\GitHub\Compilers\Complier Scanner\src\res\Grammars\test.g4 by ANTLR 4.5.2
+// Generated from res/Grammars/test.g4 by ANTLR 4.5.2
 package com.CSCI468.ANTLROut;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -17,7 +17,8 @@ public class testParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		ID=1, WS=2;
+		ID=1, KEYWORD=2, OPERATOR=3, STRINGLITERAL=4, FLOATLITERAL=5, INTLITERAL=6, 
+		WS=7, FILEEND=8;
 	public static final int
 		RULE_r = 0;
 	public static final String[] ruleNames = {
@@ -27,7 +28,8 @@ public class testParser extends Parser {
 	private static final String[] _LITERAL_NAMES = {
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "ID", "WS"
+		null, "ID", "KEYWORD", "OPERATOR", "STRINGLITERAL", "FLOATLITERAL", "INTLITERAL", 
+		"WS", "FILEEND"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -190,9 +192,9 @@ public class testParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\21\4\2\t\2\3\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n\21\4\2\t\2\3\2"+
 		"\3\2\3\2\5\2\b\n\2\3\2\3\2\7\2\f\n\2\f\2\16\2\17\13\2\3\2\2\3\2\3\2\2"+
-		"\2\21\2\7\3\2\2\2\4\5\b\2\1\2\5\b\7\3\2\2\6\b\7\4\2\2\7\4\3\2\2\2\7\6"+
+		"\2\21\2\7\3\2\2\2\4\5\b\2\1\2\5\b\7\3\2\2\6\b\7\t\2\2\7\4\3\2\2\2\7\6"+
 		"\3\2\2\2\b\r\3\2\2\2\t\n\f\3\2\2\n\f\5\2\2\4\13\t\3\2\2\2\f\17\3\2\2\2"+
 		"\r\13\3\2\2\2\r\16\3\2\2\2\16\3\3\2\2\2\17\r\3\2\2\2\4\7\r";
 	public static final ATN _ATN =
