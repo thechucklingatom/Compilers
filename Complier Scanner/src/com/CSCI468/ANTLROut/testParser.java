@@ -81,6 +81,12 @@ public class testParser extends Parser {
 	public static class RContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(testParser.ID, 0); }
 		public TerminalNode WS() { return getToken(testParser.WS, 0); }
+		public List<RContext> r() {
+			return getRuleContexts(RContext.class);
+		}
+		public RContext r(int i) {
+			return getRuleContext(RContext.class,i);
+		}
 		public RContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -101,18 +107,59 @@ public class testParser extends Parser {
 	}
 
 	public final RContext r() throws RecognitionException {
-		RContext _localctx = new RContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_r);
-		int _la;
+		return r(0);
+	}
+
+	private RContext r(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		RContext _localctx = new RContext(_ctx, _parentState);
+		RContext _prevctx = _localctx;
+		int _startState = 0;
+		enterRecursionRule(_localctx, 0, RULE_r, _p);
 		try {
+			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(2);
-			_la = _input.LA(1);
-			if ( !(_la==ID || _la==WS) ) {
-			_errHandler.recoverInline(this);
-			} else {
-				consume();
+			setState(5);
+			switch (_input.LA(1)) {
+			case ID:
+				{
+				setState(3);
+				match(ID);
+				}
+				break;
+			case WS:
+				{
+				setState(4);
+				match(WS);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(11);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new RContext(_parentctx, _parentState);
+					pushNewRecursionContext(_localctx, _startState, RULE_r);
+					setState(7);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(8);
+					r(2);
+					}
+					} 
+				}
+				setState(13);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
 			}
 		}
@@ -122,14 +169,32 @@ public class testParser extends Parser {
 			_errHandler.recover(this, re);
 		}
 		finally {
-			exitRule();
+			unrollRecursionContexts(_parentctx);
 		}
 		return _localctx;
 	}
 
+	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
+		switch (ruleIndex) {
+		case 0:
+			return r_sempred((RContext)_localctx, predIndex);
+		}
+		return true;
+	}
+	private boolean r_sempred(RContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 0:
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
+
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\7\4\2\t\2\3\2\3"+
-		"\2\3\2\2\2\3\2\2\3\3\2\3\4\5\2\4\3\2\2\2\4\5\t\2\2\2\5\3\3\2\2\2\2";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\21\4\2\t\2\3\2"+
+		"\3\2\3\2\5\2\b\n\2\3\2\3\2\7\2\f\n\2\f\2\16\2\17\13\2\3\2\2\3\2\3\2\2"+
+		"\2\21\2\7\3\2\2\2\4\5\b\2\1\2\5\b\7\3\2\2\6\b\7\4\2\2\7\4\3\2\2\2\7\6"+
+		"\3\2\2\2\b\r\3\2\2\2\t\n\f\3\2\2\n\f\5\2\2\4\13\t\3\2\2\2\f\17\3\2\2\2"+
+		"\r\13\3\2\2\2\r\16\3\2\2\2\16\3\3\2\2\2\17\r\3\2\2\2\4\7\r";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

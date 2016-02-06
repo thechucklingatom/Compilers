@@ -25,7 +25,7 @@ public class Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         testParser parser = new testParser(tokens);
         parser.r();
-        parser.r();
+        //parser.r();
         for(int i = 0; i < tokens.size(); i++){
             System.out.println(tokens.get(i));
         }
