@@ -17,8 +17,9 @@ public class testParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		ID=1, KEYWORD=2, OPERATOR=3, STATEMENT=4, IDENTIFIER=5, LITERAL=6, ASSIGNMENT=7, 
-		STRINGLITERAL=8, FLOATLITERAL=9, INTLITERAL=10, ENDOFLINE=11, WS=12;
+		KEYWORD=1, OPERATOR=2, STATEMENT=3, IDENTIFIER=4, FUNCTION=5, LITERAL=6, 
+		ASSIGNMENT=7, STRINGLITERAL=8, FLOATLITERAL=9, INTLITERAL=10, ENDOFLINE=11, 
+		WS=12;
 	public static final int
 		RULE_r = 0;
 	public static final String[] ruleNames = {
@@ -29,7 +30,7 @@ public class testParser extends Parser {
 		null, null, null, null, null, null, null, "':='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "ID", "KEYWORD", "OPERATOR", "STATEMENT", "IDENTIFIER", "LITERAL", 
+		null, "KEYWORD", "OPERATOR", "STATEMENT", "IDENTIFIER", "FUNCTION", "LITERAL", 
 		"ASSIGNMENT", "STRINGLITERAL", "FLOATLITERAL", "INTLITERAL", "ENDOFLINE", 
 		"WS"
 	};
@@ -182,7 +183,7 @@ public class testParser extends Parser {
 	public static final String _serializedATN =
 		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\16\17\4\2\t\2\3\2"+
 		"\3\2\3\2\3\2\3\2\7\2\n\n\2\f\2\16\2\r\13\2\3\2\2\3\2\3\2\2\2\16\2\4\3"+
-		"\2\2\2\4\5\b\2\1\2\5\6\7\6\2\2\6\13\3\2\2\2\7\b\f\3\2\2\b\n\5\2\2\4\t"+
+		"\2\2\2\4\5\b\2\1\2\5\6\7\5\2\2\6\13\3\2\2\2\7\b\f\3\2\2\b\n\5\2\2\4\t"+
 		"\7\3\2\2\2\n\r\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\13\3\2"+
 		"\2\2\3\13";
 	public static final ATN _ATN =

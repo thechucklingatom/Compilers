@@ -32,8 +32,7 @@ public class Main {
             }else{
                 System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
                 System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", "newline"));
-            } 
-            
+            }             
         }
     }
 
