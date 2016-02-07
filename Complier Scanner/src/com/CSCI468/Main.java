@@ -3,8 +3,6 @@ package com.CSCI468;
 import com.CSCI468.ANTLROut.testParser;
 import org.antlr.v4.runtime.*;
 import com.CSCI468.ANTLROut.testLexer;
-
-import java.io.IOError;
 import java.io.IOException;
 
 /**
@@ -25,13 +23,13 @@ public class Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         testParser parser = new testParser(tokens);
         parser.r();
-        //parser.r();
+        
         for(int i = 0; i < tokens.size(); i++){
             if(tokens.get(i).getType()-1 < 0){
                 System.out.println(""); 
             }else{
                 System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
-                System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", "newline"));
+                System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", ""));
             }             
         }
     }
