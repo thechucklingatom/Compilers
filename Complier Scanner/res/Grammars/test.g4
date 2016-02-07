@@ -12,5 +12,5 @@ ASSIGNMENT : ':=';
 STRINGLITERAL : '"'[.:\\ ]*'"';
 FLOATLITERAL :  [0-9]+[.][0-9]+;
 INTLITERAL  : [0-9]+ ;
-ENDOFLINE : [;][\n\r] | [\n\r] ;
+ENDOFLINE : ';''\r'? '\n' ;
 WS : [ \t\r\n]+ ;
