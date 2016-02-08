@@ -47,7 +47,7 @@ public class Main {
         //location 0 = burns, 1 = putnamTower, 2 = putnamLaptop
         String[] location = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4", "res/Grammars/scanner.g4"};
         //compiled output location
-        String[] output = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\com\\CSCI468\\ANTLROut", "src\\com\\CSCI468\\ANTLROut"};
+        String[] output = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\com\\CSCI468\\ANTLROut", "src/com/CSCI468/ANTLROut"};
 
         String[] arg0 = { "-visitor", location[1], "-package", "com.CSCI468.ANTLROut", "-o", output[1] };
         org.antlr.v4.Tool.main(arg0);
