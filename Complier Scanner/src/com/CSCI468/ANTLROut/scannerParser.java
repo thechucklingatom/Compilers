@@ -79,7 +79,6 @@ public class scannerParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class StartContext extends ParserRuleContext {
-		public TerminalNode WS() { return getToken(scannerParser.WS, 0); }
 		public List<StartContext> start() {
 			return getRuleContexts(StartContext.class);
 		}
@@ -121,13 +120,31 @@ public class scannerParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(3);
-			match(WS);
+			setState(4); 
+			_errHandler.sync(this);
+			_alt = 1+1;
+			do {
+				switch (_alt) {
+				case 1+1:
+					{
+					{
+					setState(3);
+					matchWildcard();
+					}
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				setState(6); 
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+			} while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(9);
+			setState(12);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -136,16 +153,16 @@ public class scannerParser extends Parser {
 					{
 					_localctx = new StartContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_start);
-					setState(5);
-					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(6);
-					start(2);
+					setState(8);
+					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+					setState(9);
+					start(3);
 					}
 					} 
 				}
-				setState(11);
+				setState(14);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
 			}
 		}
@@ -170,17 +187,18 @@ public class scannerParser extends Parser {
 	private boolean start_sempred(StartContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 1);
+			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\b\17\4\2\t\2\3\2"+
-		"\3\2\3\2\3\2\3\2\7\2\n\n\2\f\2\16\2\r\13\2\3\2\2\3\2\3\2\2\2\16\2\4\3"+
-		"\2\2\2\4\5\b\2\1\2\5\6\7\3\2\2\6\13\3\2\2\2\7\b\f\3\2\2\b\n\5\2\2\4\t"+
-		"\7\3\2\2\2\n\r\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\13\3\2"+
-		"\2\2\3\13";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\b\22\4\2\t\2\3\2"+
+		"\3\2\6\2\7\n\2\r\2\16\2\b\3\2\3\2\7\2\r\n\2\f\2\16\2\20\13\2\3\2\3\b\3"+
+		"\2\3\2\2\2\22\2\4\3\2\2\2\4\6\b\2\1\2\5\7\13\2\2\2\6\5\3\2\2\2\7\b\3\2"+
+		"\2\2\b\t\3\2\2\2\b\6\3\2\2\2\t\16\3\2\2\2\n\13\f\4\2\2\13\r\5\2\2\5\f"+
+		"\n\3\2\2\2\r\20\3\2\2\2\16\f\3\2\2\2\16\17\3\2\2\2\17\3\3\2\2\2\20\16"+
+		"\3\2\2\2\4\b\16";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
