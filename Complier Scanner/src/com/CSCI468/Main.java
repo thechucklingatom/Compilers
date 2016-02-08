@@ -15,8 +15,14 @@ public class Main {
 
         //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
         //generateFiles();
+        
+        ANTLRFileStream fileStream;
 
-        ANTLRFileStream fileStream = new ANTLRFileStream("res/Step1/inputs/loop.micro");
+        if(args[0] == null){
+            fileStream = new ANTLRFileStream("res/Step1/inputs/loop.micro");
+        }else{
+            fileStream = new ANTLRFileStream(args[0]);
+        }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 
         testLexer lexer = new testLexer(fileStream);
