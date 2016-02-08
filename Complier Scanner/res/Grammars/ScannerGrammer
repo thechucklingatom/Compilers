@@ -1,0 +1,6 @@
+grammar scanner;
+
+START : WS | START+
+WS : [ \t\r\n]+ ;
+KEYWORD : 'PROGRAM'
+IDENTIFIER : [A-Za-z][A-Za-z0-9]*;
