@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException{
 
         //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
-        //generateFiles();
+        generateFiles();
         
         ANTLRFileStream fileStream;
 
@@ -43,7 +43,7 @@ public class Main {
     public static void generateFiles(){
         //generates antlr files to be used to parse
         //location 0 = burns, 1 = putnamTower, 2 = putnamLaptop
-        String[] location = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4", "res/Grammars/test.g4"};
+        String[] location = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4", "res/Grammars/scanner.g4"};
         //compiled output location
         String[] output = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\com\\CSCI468\\ANTLROut", "src\\com\\CSCI468\\ANTLROut"};
 
