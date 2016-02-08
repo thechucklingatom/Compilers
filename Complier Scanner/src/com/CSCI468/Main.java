@@ -1,5 +1,7 @@
 package com.CSCI468;
 
+import com.CSCI468.ANTLROut.scannerLexer;
+import com.CSCI468.ANTLROut.scannerParser;
 import com.CSCI468.ANTLROut.testParser;
 import org.antlr.v4.runtime.*;
 import com.CSCI468.ANTLROut.testLexer;
@@ -14,21 +16,21 @@ public class Main {
     public static void main(String[] args) throws IOException{
 
         //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
-        generateFiles();
+        //generateFiles();
         
         ANTLRFileStream fileStream;
 
-        if(args[0] == null){
-            fileStream = new ANTLRFileStream("res/Step1/inputs/loop.micro");
-        }else{
+       try{
             fileStream = new ANTLRFileStream(args[0]);
+        }catch(ArrayIndexOutOfBoundsException ex){
+            fileStream = new ANTLRFileStream("res/Step1/inputs/loop.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 
-        testLexer lexer = new testLexer(fileStream);
+        scannerLexer lexer = new scannerLexer(fileStream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        testParser parser = new testParser(tokens);
-        parser.r();
+        scannerParser parser = new scannerParser(tokens);
+        parser.start();
         
         for(int i = 0; i < tokens.size(); i++){
             if(tokens.get(i).getType()-1 < 0){
