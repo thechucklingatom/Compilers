@@ -8,6 +8,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface scannerListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link scannerParser#pre}.
+	 * @param ctx the parse tree
+	 */
+	void enterPre(scannerParser.PreContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#pre}.
+	 * @param ctx the parse tree
+	 */
+	void exitPre(scannerParser.PreContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link scannerParser#start}.
 	 * @param ctx the parse tree
 	 */

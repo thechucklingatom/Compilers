@@ -16,6 +16,18 @@ public class scannerBaseListener implements scannerListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPre(scannerParser.PreContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPre(scannerParser.PreContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStart(scannerParser.StartContext ctx) { }
 	/**
 	 * {@inheritDoc}
