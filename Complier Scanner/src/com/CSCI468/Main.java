@@ -34,7 +34,7 @@ public class Main {
         
         for(int i = 0; i < tokens.size(); i++){
             if(tokens.get(i).getType()-1 < 0){
-                System.out.println(""); 
+                
             }else{
                 System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
                 System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", ""));
