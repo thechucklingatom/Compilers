@@ -15,7 +15,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 
 /**
  *
- * @author thech_000
+ * @author thechucklingatom
  */
 public class ExitingErrorListener implements ANTLRErrorListener{
     public static ExitingErrorListener INSTANCE = new ExitingErrorListener();
