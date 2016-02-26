@@ -128,6 +128,7 @@ public class scannerParser extends Parser {
 	}
 
 	public static class StartContext extends ParserRuleContext {
+		public TerminalNode KEYWORD() { return getToken(scannerParser.KEYWORD, 0); }
 		public List<StartContext> start() {
 			return getRuleContexts(StartContext.class);
 		}
@@ -169,31 +170,13 @@ public class scannerParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(9); 
-			_errHandler.sync(this);
-			_alt = 1+1;
-			do {
-				switch (_alt) {
-				case 1+1:
-					{
-					{
-					setState(8);
-					matchWildcard();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				setState(11); 
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
-			} while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
+			setState(8);
+			match(KEYWORD);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(17);
+			setState(14);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -202,16 +185,16 @@ public class scannerParser extends Parser {
 					{
 					_localctx = new StartContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_start);
-					setState(13);
+					setState(10);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(14);
+					setState(11);
 					start(3);
 					}
 					} 
 				}
-				setState(19);
+				setState(16);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			}
 			}
 		}
@@ -242,13 +225,12 @@ public class scannerParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n\27\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\2\3\3\3\3\6\3\f\n\3\r\3\16\3\r\3\3\3\3\7\3\22\n\3\f\3\16"+
-		"\3\25\13\3\3\3\3\r\3\4\4\2\4\2\2\26\2\6\3\2\2\2\4\t\3\2\2\2\6\7\5\4\3"+
-		"\2\7\b\7\2\2\3\b\3\3\2\2\2\t\13\b\3\1\2\n\f\13\2\2\2\13\n\3\2\2\2\f\r"+
-		"\3\2\2\2\r\16\3\2\2\2\r\13\3\2\2\2\16\23\3\2\2\2\17\20\f\4\2\2\20\22\5"+
-		"\4\3\5\21\17\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24\5\3"+
-		"\2\2\2\25\23\3\2\2\2\4\r\23";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n\24\4\2\t\2\4\3"+
+		"\t\3\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\7\3\17\n\3\f\3\16\3\22\13\3\3\3\2"+
+		"\3\4\4\2\4\2\2\22\2\6\3\2\2\2\4\t\3\2\2\2\6\7\5\4\3\2\7\b\7\2\2\3\b\3"+
+		"\3\2\2\2\t\n\b\3\1\2\n\13\7\4\2\2\13\20\3\2\2\2\f\r\f\4\2\2\r\17\5\4\3"+
+		"\5\16\f\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\5\3\2\2\2"+
+		"\22\20\3\2\2\2\3\20";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -1,6 +1,6 @@
 grammar scanner;
 pre : start EOF ;
-start : start start | .+?;
+start : start start | KEYWORD;
 WS : [ \t\r\n]+ -> skip;
 KEYWORD : 'PROGRAM' 
             | 'BEGIN' 
