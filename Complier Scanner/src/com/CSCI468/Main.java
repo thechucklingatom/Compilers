@@ -2,9 +2,7 @@ package com.CSCI468;
 
 import com.CSCI468.ANTLROut.scannerLexer;
 import com.CSCI468.ANTLROut.scannerParser;
-import com.CSCI468.ANTLROut.testParser;
 import org.antlr.v4.runtime.*;
-import com.CSCI468.ANTLROut.testLexer;
 import java.io.IOException;
 
 /**
@@ -28,8 +26,12 @@ public class Main {
         ANTLRInputStream in = new ANTLRInputStream("hello");
 
         scannerLexer lexer = new scannerLexer(fileStream);
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(ExitingErrorListener.INSTANCE);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         scannerParser parser = new scannerParser(tokens);
+        parser.removeErrorListeners();
+        parser.addErrorListener(ExitingErrorListener.INSTANCE);
         parser.start();
         
         for(int i = 0; i < tokens.size(); i++){
