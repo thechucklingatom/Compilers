@@ -34,14 +34,16 @@ public class Main {
         parser.addErrorListener(ExitingErrorListener.INSTANCE);
         parser.start();
         
-        for(int i = 0; i < tokens.size(); i++){
-            if(tokens.get(i).getType()-1 < 0){
-                
-            }else{
-                System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
-                System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", ""));
-            }             
-        }
+//        for(int i = 0; i < tokens.size(); i++){
+//            if(tokens.get(i).getType()-1 < 0){
+//                
+//            }else{
+//                System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
+//                System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", ""));
+//            }             
+//        }
+        
+        System.out.println("Accepted");
     }
 
     public static void generateFiles(){
