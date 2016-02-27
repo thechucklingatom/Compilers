@@ -22,4 +22,34 @@ public interface scannerVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStart(scannerParser.StartContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#declare}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclare(scannerParser.DeclareContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(scannerParser.FunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatement(scannerParser.StatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignment(scannerParser.AssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#returnstatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnstatement(scannerParser.ReturnstatementContext ctx);
 }

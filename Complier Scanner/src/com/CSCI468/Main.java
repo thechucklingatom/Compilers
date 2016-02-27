@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException{
 
         //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
+       
         //generateFiles();
         
         ANTLRFileStream fileStream;
@@ -21,7 +22,7 @@ public class Main {
        try{
             fileStream = new ANTLRFileStream(args[0]);
         }catch(ArrayIndexOutOfBoundsException ex){
-            fileStream = new ANTLRFileStream("res/Step1/inputs/loop.micro");
+            fileStream = new ANTLRFileStream("res/Step2/inputs/test5.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 

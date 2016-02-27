@@ -22,6 +22,7 @@ public class ExitingErrorListener implements ANTLRErrorListener{
 
     @Override
     public void syntaxError(Recognizer<?, ?> rcgnzr, Object o, int i, int i1, String string, RecognitionException re) {
+        System.out.println(o.toString() + " " + string + "   at line " + i + " at char position " + i1);
         System.out.println("Not Accepted");
         System.exit(0);
     }
@@ -38,7 +39,7 @@ public class ExitingErrorListener implements ANTLRErrorListener{
 
     @Override
     public void reportContextSensitivity(Parser parser, DFA dfa, int i, int i1, int i2, ATNConfigSet atncs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
