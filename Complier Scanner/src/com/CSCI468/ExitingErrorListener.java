@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 
@@ -22,7 +23,10 @@ public class ExitingErrorListener implements ANTLRErrorListener{
 
     @Override
     public void syntaxError(Recognizer<?, ?> rcgnzr, Object o, int i, int i1, String string, RecognitionException re) {
-        System.out.println(o.toString() + " " + string + "   at line " + i + " at char position " + i1);
+        System.out.println("Token Type: " + ((Token) o).getType());
+        System.out.println("Value: " + ((Token) o).getText());
+        System.out.println("ID: " + ((Token) o).getTokenIndex());
+        System.out.println(string + "   at line " + i + " at char position " + i1);
         System.out.println("Not Accepted");
         System.exit(0);
     }

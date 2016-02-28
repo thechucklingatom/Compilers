@@ -50,11 +50,11 @@ public class Main {
     public static void generateFiles(){
         //generates antlr files to be used to parse
         //location 0 = burns, 1 = putnamTower, 2 = putnamLaptop
-        String[] location = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\res\\Grammars\\test.g4", "res/Grammars/scanner.g4"};
+        String location = "res/Grammars/scanner.g4";
         //compiled output location
-        String[] output = {"C:\\Users\\Brendan Burns\\Documents\\GitHub\\Compilers\\Complier Scanner\\src\\com\\CSCI468\\ANTLROut", "src/com/CSCI468/ANTLROut"};
+        String output = "src/com/CSCI468/ANTLROut";
 
-        String[] arg0 = { "-visitor", location[1], "-package", "com.CSCI468.ANTLROut", "-o", output[1] };
+        String[] arg0 = { "-visitor", location, "-package", "com.CSCI468.ANTLROut", "-o", output };
         org.antlr.v4.Tool.main(arg0);
     }
 }
