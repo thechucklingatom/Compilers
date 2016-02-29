@@ -22,7 +22,7 @@ public class Main {
        try{
             fileStream = new ANTLRFileStream(args[0]);
         }catch(ArrayIndexOutOfBoundsException ex){
-            fileStream = new ANTLRFileStream("res/Step2/inputs/test5.micro");
+            fileStream = new ANTLRFileStream("res/Step2/inputs/test8.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 

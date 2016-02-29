@@ -95,6 +95,30 @@ public class scannerBaseListener implements scannerListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReturnstatement(scannerParser.ReturnstatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctiondeclaration(scannerParser.FunctiondeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctiondeclaration(scannerParser.FunctiondeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionexecute(scannerParser.FunctionexecuteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionexecute(scannerParser.FunctionexecuteContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
