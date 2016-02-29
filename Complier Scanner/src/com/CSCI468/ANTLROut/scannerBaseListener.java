@@ -40,61 +40,121 @@ public class scannerBaseListener implements scannerListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclare(scannerParser.DeclareContext ctx) { }
+	@Override public void enterVariabledeclaration(scannerParser.VariabledeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclare(scannerParser.DeclareContext ctx) { }
+	@Override public void exitVariabledeclaration(scannerParser.VariabledeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction(scannerParser.FunctionContext ctx) { }
+	@Override public void enterMathoperation(scannerParser.MathoperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction(scannerParser.FunctionContext ctx) { }
+	@Override public void exitMathoperation(scannerParser.MathoperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(scannerParser.StatementContext ctx) { }
+	@Override public void enterFunctionargs(scannerParser.FunctionargsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(scannerParser.StatementContext ctx) { }
+	@Override public void exitFunctionargs(scannerParser.FunctionargsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignment(scannerParser.AssignmentContext ctx) { }
+	@Override public void enterFunctionargs2(scannerParser.Functionargs2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignment(scannerParser.AssignmentContext ctx) { }
+	@Override public void exitFunctionargs2(scannerParser.Functionargs2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturnstatement(scannerParser.ReturnstatementContext ctx) { }
+	@Override public void enterInputargs(scannerParser.InputargsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturnstatement(scannerParser.ReturnstatementContext ctx) { }
+	@Override public void exitInputargs(scannerParser.InputargsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInputargs2(scannerParser.Inputargs2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInputargs2(scannerParser.Inputargs2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditionalargs(scannerParser.ConditionalargsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionalargs(scannerParser.ConditionalargsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditionalargs2(scannerParser.Conditionalargs2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionalargs2(scannerParser.Conditionalargs2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVariable(scannerParser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariable(scannerParser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionvariable(scannerParser.FunctionvariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionvariable(scannerParser.FunctionvariableContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

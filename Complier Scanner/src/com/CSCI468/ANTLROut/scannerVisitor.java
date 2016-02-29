@@ -23,33 +23,63 @@ public interface scannerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStart(scannerParser.StartContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link scannerParser#declare}.
+	 * Visit a parse tree produced by {@link scannerParser#variabledeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDeclare(scannerParser.DeclareContext ctx);
+	T visitVariabledeclaration(scannerParser.VariabledeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link scannerParser#function}.
+	 * Visit a parse tree produced by {@link scannerParser#mathoperation}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction(scannerParser.FunctionContext ctx);
+	T visitMathoperation(scannerParser.MathoperationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link scannerParser#statement}.
+	 * Visit a parse tree produced by {@link scannerParser#functionargs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatement(scannerParser.StatementContext ctx);
+	T visitFunctionargs(scannerParser.FunctionargsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link scannerParser#assignment}.
+	 * Visit a parse tree produced by {@link scannerParser#functionargs2}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssignment(scannerParser.AssignmentContext ctx);
+	T visitFunctionargs2(scannerParser.Functionargs2Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link scannerParser#returnstatement}.
+	 * Visit a parse tree produced by {@link scannerParser#inputargs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturnstatement(scannerParser.ReturnstatementContext ctx);
+	T visitInputargs(scannerParser.InputargsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#inputargs2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputargs2(scannerParser.Inputargs2Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#conditionalargs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionalargs(scannerParser.ConditionalargsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#conditionalargs2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionalargs2(scannerParser.Conditionalargs2Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(scannerParser.VariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#functionvariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionvariable(scannerParser.FunctionvariableContext ctx);
 }

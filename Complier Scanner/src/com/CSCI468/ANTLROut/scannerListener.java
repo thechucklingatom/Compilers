@@ -28,53 +28,103 @@ public interface scannerListener extends ParseTreeListener {
 	 */
 	void exitStart(scannerParser.StartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link scannerParser#declare}.
+	 * Enter a parse tree produced by {@link scannerParser#variabledeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeclare(scannerParser.DeclareContext ctx);
+	void enterVariabledeclaration(scannerParser.VariabledeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link scannerParser#declare}.
+	 * Exit a parse tree produced by {@link scannerParser#variabledeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeclare(scannerParser.DeclareContext ctx);
+	void exitVariabledeclaration(scannerParser.VariabledeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link scannerParser#function}.
+	 * Enter a parse tree produced by {@link scannerParser#mathoperation}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction(scannerParser.FunctionContext ctx);
+	void enterMathoperation(scannerParser.MathoperationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link scannerParser#function}.
+	 * Exit a parse tree produced by {@link scannerParser#mathoperation}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction(scannerParser.FunctionContext ctx);
+	void exitMathoperation(scannerParser.MathoperationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link scannerParser#statement}.
+	 * Enter a parse tree produced by {@link scannerParser#functionargs}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(scannerParser.StatementContext ctx);
+	void enterFunctionargs(scannerParser.FunctionargsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link scannerParser#statement}.
+	 * Exit a parse tree produced by {@link scannerParser#functionargs}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(scannerParser.StatementContext ctx);
+	void exitFunctionargs(scannerParser.FunctionargsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link scannerParser#assignment}.
+	 * Enter a parse tree produced by {@link scannerParser#functionargs2}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment(scannerParser.AssignmentContext ctx);
+	void enterFunctionargs2(scannerParser.Functionargs2Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link scannerParser#assignment}.
+	 * Exit a parse tree produced by {@link scannerParser#functionargs2}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment(scannerParser.AssignmentContext ctx);
+	void exitFunctionargs2(scannerParser.Functionargs2Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link scannerParser#returnstatement}.
+	 * Enter a parse tree produced by {@link scannerParser#inputargs}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturnstatement(scannerParser.ReturnstatementContext ctx);
+	void enterInputargs(scannerParser.InputargsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link scannerParser#returnstatement}.
+	 * Exit a parse tree produced by {@link scannerParser#inputargs}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturnstatement(scannerParser.ReturnstatementContext ctx);
+	void exitInputargs(scannerParser.InputargsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#inputargs2}.
+	 * @param ctx the parse tree
+	 */
+	void enterInputargs2(scannerParser.Inputargs2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#inputargs2}.
+	 * @param ctx the parse tree
+	 */
+	void exitInputargs2(scannerParser.Inputargs2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#conditionalargs}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionalargs(scannerParser.ConditionalargsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#conditionalargs}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionalargs(scannerParser.ConditionalargsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#conditionalargs2}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionalargs2(scannerParser.Conditionalargs2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#conditionalargs2}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionalargs2(scannerParser.Conditionalargs2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(scannerParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(scannerParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#functionvariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionvariable(scannerParser.FunctionvariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#functionvariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionvariable(scannerParser.FunctionvariableContext ctx);
 }

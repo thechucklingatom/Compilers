@@ -22,7 +22,7 @@ public class Main {
        try{
             fileStream = new ANTLRFileStream(args[0]);
         }catch(ArrayIndexOutOfBoundsException ex){
-            fileStream = new ANTLRFileStream("res/Step2/inputs/test5.micro");
+            fileStream = new ANTLRFileStream("res/Step2/inputs/test21.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 
@@ -35,14 +35,9 @@ public class Main {
         parser.addErrorListener(ExitingErrorListener.INSTANCE);
         parser.start();
         
-//        for(int i = 0; i < tokens.size(); i++){
-//            if(tokens.get(i).getType()-1 < 0){
-//                
-//            }else{
-//                System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
-//                System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", ""));
-//            }             
-//        }
+        
+        // Single line to comment to print tokens
+        //printTokens(tokens, lexer);
         
         System.out.println("Accepted");
     }
@@ -57,4 +52,18 @@ public class Main {
         String[] arg0 = { "-visitor", location, "-package", "com.CSCI468.ANTLROut", "-o", output };
         org.antlr.v4.Tool.main(arg0);
     }
+    
+    public static void printTokens(CommonTokenStream tokens, scannerLexer lexer){
+            for(int i = 0; i < tokens.size(); i++){
+            if(tokens.get(i).getType()-1 < 0){
+                
+            }else{
+                System.out.println("Token Type: " + lexer.getRuleNames()[tokens.get(i).getType() - 1]);
+                System.out.println("Value: " + tokens.get(i).getText().replaceAll("\n", ""));
+            }             
+        }    
+        
+        
+    }
+    
 }
