@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 T__0=1
 T__1=2
 T__2=3
@@ -29,3 +30,13 @@ IDENTIFIER=22
 ')'=7
 'RETURN'=8
 ','=9
+=======
+WS=1
+KEYWORD=2
+COMMENT=3
+OPERATOR=4
+STRINGLITERAL=5
+INTLITERAL=6
+FLOATLITERAL=7
+IDENTIFIER=8
+>>>>>>> origin/master

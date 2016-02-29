@@ -76,6 +76,7 @@ public interface scannerListener extends ParseTreeListener {
 	 * Exit a parse tree produced by {@link scannerParser#inputargs}.
 	 * @param ctx the parse tree
 	 */
+<<<<<<< HEAD
 	void exitInputargs(scannerParser.InputargsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link scannerParser#inputargs2}.
@@ -127,4 +128,27 @@ public interface scannerListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionvariable(scannerParser.FunctionvariableContext ctx);
+=======
+	void exitReturnstatement(scannerParser.ReturnstatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#functiondeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctiondeclaration(scannerParser.FunctiondeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#functiondeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctiondeclaration(scannerParser.FunctiondeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#functionexecute}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionexecute(scannerParser.FunctionexecuteContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#functionexecute}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionexecute(scannerParser.FunctionexecuteContext ctx);
+>>>>>>> origin/master
 }

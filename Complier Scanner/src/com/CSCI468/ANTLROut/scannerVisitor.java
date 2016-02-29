@@ -51,6 +51,7 @@ public interface scannerVisitor<T> extends ParseTreeVisitor<T> {
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
+<<<<<<< HEAD
 	T visitInputargs(scannerParser.InputargsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link scannerParser#inputargs2}.
@@ -82,4 +83,19 @@ public interface scannerVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionvariable(scannerParser.FunctionvariableContext ctx);
+=======
+	T visitReturnstatement(scannerParser.ReturnstatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#functiondeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctiondeclaration(scannerParser.FunctiondeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#functionexecute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionexecute(scannerParser.FunctionexecuteContext ctx);
+>>>>>>> origin/master
 }
