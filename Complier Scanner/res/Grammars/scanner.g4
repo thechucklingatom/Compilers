@@ -42,7 +42,7 @@ KEYWORD : 'PROGRAM'
             | 'FUNCTION' 
             | 'RETURN' 
             | 'FLOAT';
-COMMENT : '--' ~( '\r' | '\n')* -> skip;
+COMMENT : '--' ~( '\r' | '\n')*;
 OPERATOR: ';' 
             | '+' 
             | '<' 
