@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 T__0=1
+<<<<<<< HEAD
 T__1=2
 T__2=3
 T__3=4
@@ -40,3 +41,14 @@ INTLITERAL=6
 FLOATLITERAL=7
 IDENTIFIER=8
 >>>>>>> origin/master
+=======
+WS=2
+KEYWORD=3
+COMMENT=4
+OPERATOR=5
+STRINGLITERAL=6
+INTLITERAL=7
+FLOATLITERAL=8
+IDENTIFIER=9
+'ELSE'=1
+>>>>>>> parent of 7a2da36... Updated Grammar

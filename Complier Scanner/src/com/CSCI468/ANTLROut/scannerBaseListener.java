@@ -94,47 +94,30 @@ public class scannerBaseListener implements scannerListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-<<<<<<< HEAD
 	@Override public void exitInputargs(scannerParser.InputargsContext ctx) { }
-=======
-	@Override public void exitReturnstatement(scannerParser.ReturnstatementContext ctx) { }
->>>>>>> origin/master
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-<<<<<<< HEAD
 	@Override public void enterInputargs2(scannerParser.Inputargs2Context ctx) { }
-=======
-	@Override public void enterFunctiondeclaration(scannerParser.FunctiondeclarationContext ctx) { }
->>>>>>> origin/master
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-<<<<<<< HEAD
 	@Override public void exitInputargs2(scannerParser.Inputargs2Context ctx) { }
-=======
-	@Override public void exitFunctiondeclaration(scannerParser.FunctiondeclarationContext ctx) { }
->>>>>>> origin/master
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-<<<<<<< HEAD
 	@Override public void enterConditionalargs(scannerParser.ConditionalargsContext ctx) { }
-=======
-	@Override public void enterFunctionexecute(scannerParser.FunctionexecuteContext ctx) { }
->>>>>>> origin/master
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-<<<<<<< HEAD
 	@Override public void exitConditionalargs(scannerParser.ConditionalargsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -172,9 +155,6 @@ public class scannerBaseListener implements scannerListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionvariable(scannerParser.FunctionvariableContext ctx) { }
-=======
-	@Override public void exitFunctionexecute(scannerParser.FunctionexecuteContext ctx) { }
->>>>>>> origin/master
 
 	/**
 	 * {@inheritDoc}
