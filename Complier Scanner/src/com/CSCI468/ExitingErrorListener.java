@@ -27,7 +27,7 @@ public class ExitingErrorListener implements ANTLRErrorListener{
         //System.out.println("Value: " + ((Token) o).getText());
         //System.out.println("ID: " + ((Token) o).getTokenIndex());
         //System.out.println(string + "   at line " + i + " at char position " + i1);
-        System.out.println("Not Accepted");
+        System.out.println("Not accepted");
         System.exit(0);
     }
 
