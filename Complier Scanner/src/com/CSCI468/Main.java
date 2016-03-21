@@ -33,13 +33,19 @@ public class Main {
         scannerParser parser = new scannerParser(tokens);
         parser.removeErrorListeners();
         parser.addErrorListener(ExitingErrorListener.INSTANCE);
-        parser.start();
+        parser.pre();
+        
+        
+//        for(String s : parser.ST.keySet()){
+//            System.out.println(s);
+//        }
+        System.out.println(parser.ST.get("asdf").toString());
         
         
         // Single line to comment to print tokens
         //printTokens(tokens, lexer);
         
-        System.out.println("Accepted");
+        //System.out.println("Accepted");
     }
 
     public static void generateFiles(){
