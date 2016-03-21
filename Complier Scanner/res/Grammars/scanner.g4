@@ -17,7 +17,7 @@ start : start start
         | 'PROGRAM' WS IDENTIFIER WS KEYWORD WS                                                                                                     //PROGRAM TEST BEGIN
         | KEYWORD WS                                                                                                                                    //END
         | NUMTYPE WS IDENTIFIER variabledeclaration                                                                                                     //INT a, b;
-        | ('STRING' WS)? IDENTIFIER WS* ':=' WS* STRINGLITERAL ';' WS     {ST.put($IDENTIFIER.text, (new STC("String", $STRINGLITERAL.text)));}                                      //STRING str := "test";
+        | ('STRING' WS)? IDENTIFIER WS* ':=' WS* STRINGLITERAL ';' WS     {ST.put($IDENTIFIER.text, (new STC("String", ($STRINGLITERAL.text).substring(1, ($STRINGLITERAL.text).length()-1))));}                                      //STRING str := "test";
         | (NUMTYPE WS)? IDENTIFIER ':=' INTLITERAL ';' WS                                                                                           //INT num := 12;
         | (NUMTYPE WS)? IDENTIFIER ':=' FLOATLITERAL ';' WS                                                                                         //FLOAT fraction := 1.5;
         | 'FUNCTION' WS (NUMTYPE | 'VOID') WS IDENTIFIER WS* '(' functionargs ')' WS                                                                //FUNCTION VOID printout (INT a,INT b,INT c)

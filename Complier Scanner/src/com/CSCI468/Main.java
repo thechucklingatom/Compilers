@@ -36,10 +36,10 @@ public class Main {
         parser.pre();
         
         
-//        for(String s : parser.ST.keySet()){
-//            System.out.println(s);
-//        }
-        System.out.println(parser.ST.get("asdf").toString());
+        for(String s : parser.ST.keySet()){
+            System.out.println(s);
+        }
+        System.out.println(parser.ST.get("dummy").toString());
         
         
         // Single line to comment to print tokens
