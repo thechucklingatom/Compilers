@@ -11,7 +11,7 @@ import java.util.HashMap;
     public HashMap<String, STC> ST = new HashMap();
 }
 
-pre : start EOF {ST.put("asdf", new STC("asdf", "asdf"));};
+pre : start EOF {};
 start : start start 
         | 'PROGRAM' WS IDENTIFIER WS                                                                                                            //PROGRAM TEST
         | 'PROGRAM' WS IDENTIFIER WS KEYWORD WS                                                                                                     //PROGRAM TEST BEGIN
