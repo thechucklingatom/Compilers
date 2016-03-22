@@ -134,7 +134,7 @@ public class scannerParser extends Parser {
 			start(0);
 			setState(25);
 			match(EOF);
-			ST.put("asdf", new STC("asdf", "asdf"));
+
 			}
 		}
 		catch (RecognitionException re) {
