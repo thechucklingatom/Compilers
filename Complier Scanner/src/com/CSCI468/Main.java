@@ -38,8 +38,9 @@ public class Main {
         
         for(String s : parser.ST.keySet()){
             System.out.println(s);
+        System.out.println(parser.ST.get(s).toString());    
         }
-        System.out.println(parser.ST.get("dummy").toString());
+        
         
         
         // Single line to comment to print tokens

@@ -5,14 +5,16 @@ grammar scanner;
 import java.util.HashMap;
 import java.util.Stack;
 
+
 }
 
 @parser::members{
+
     
-    int numBLOCK = 0;
+    int numBlock = 0;
 
     public HashMap<String, STC> ST = new HashMap();
-    Stack myStack = new Stack();
+    static Stack myStack = new Stack();
 }
 
 pre : start EOF {};
@@ -28,7 +30,12 @@ start : start start
         {myStack.push("GLOBAL");}
 
         | KEYWORD WS                                                                                                                                    
-        //END
+        //BEGIN
+
+
+        | SCOPEEND WS
+        //ENDWHILE
+        {myStack.pop();}
 
 
         | NUMTYPE WS IDENTIFIER variabledeclaration                                                                                                     
@@ -36,11 +43,11 @@ start : start start
         {
         if (!ST.containsKey($IDENTIFIER.text))
             {
-            //ST.put($IDENTIFIER.text, (new STC($NUMTYPE.text, "noValue", (String) myStack.peek())));
+            ST.put($IDENTIFIER.text, (new STC($NUMTYPE.text, "noValue", (String) myStack.peek())));
             }
         else
             {
-            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text)
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
         }
@@ -48,7 +55,7 @@ start : start start
         | ('STRING' WS)? IDENTIFIER WS* ':=' WS* STRINGLITERAL ';' WS
         //STRING str := "test";
         {
-        if (!ST.containsKey($IDENTIFIER.text) && )
+        if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC("String", ($STRINGLITERAL.text).substring(1, ($STRINGLITERAL.text).length()-1), (String) myStack.peek())));
             }
@@ -72,6 +79,13 @@ start : start start
 
         | 'FUNCTION' WS (NUMTYPE | 'VOID') WS IDENTIFIER WS* '(' functionargs ')' WS                                                                
         //FUNCTION VOID printout (INT a,INT b,INT c)
+        {
+        myStack.push($IDENTIFIER.text);
+
+
+        }
+
+
         
 
         | IDENTIFIER WS* ':=' WS* '('* variable ')'* mathoperation                                                                         
@@ -89,8 +103,14 @@ start : start start
 
         | CONDITIONAL WS* '(' variable conditionalargs ')' WS                                                                                   
         //WHILE (x1-x2 > error+x3)
+        {
+        numBlock++;
+        myStack.push("BLOCK " + numBlock);
 
 
+
+
+        }
         | COMMENT;
 
 
@@ -123,10 +143,13 @@ CONDITIONAL : 'IF'
 
 
 KEYWORD : 'BEGIN' 
-            | 'END'         {myStack.pop();}
-            | 'ENDIF'       {myStack.pop();} 
-            | 'ENDWHILE'   {myStack.pop();}
             | 'ELSE';
+
+
+
+SCOPEEND :  'END'         
+            | 'ENDIF'        
+            | 'ENDWHILE';   
 
 
 NUMTYPE : 'INT'
