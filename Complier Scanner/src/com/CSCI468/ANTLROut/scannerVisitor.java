@@ -3,6 +3,8 @@ package com.CSCI468.ANTLROut;
 
 
 import java.util.HashMap;
+import java.util.Stack;
+
 
 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
@@ -28,11 +30,17 @@ public interface scannerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStart(scannerParser.StartContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link scannerParser#variabledeclaration}.
+	 * Visit a parse tree produced by {@link scannerParser#intvariabledeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariabledeclaration(scannerParser.VariabledeclarationContext ctx);
+	T visitIntvariabledeclaration(scannerParser.IntvariabledeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link scannerParser#floatvariabledeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloatvariabledeclaration(scannerParser.FloatvariabledeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link scannerParser#mathoperation}.
 	 * @param ctx the parse tree

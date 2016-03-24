@@ -40,7 +40,7 @@ public class Main {
             System.out.println(s);
         System.out.println(parser.ST.get(s).toString());    
         }
-        
+
         
         
         // Single line to comment to print tokens

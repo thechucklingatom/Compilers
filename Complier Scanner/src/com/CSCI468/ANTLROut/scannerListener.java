@@ -3,6 +3,8 @@ package com.CSCI468.ANTLROut;
 
 
 import java.util.HashMap;
+import java.util.Stack;
+
 
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
@@ -33,15 +35,25 @@ public interface scannerListener extends ParseTreeListener {
 	 */
 	void exitStart(scannerParser.StartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link scannerParser#variabledeclaration}.
+	 * Enter a parse tree produced by {@link scannerParser#intvariabledeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariabledeclaration(scannerParser.VariabledeclarationContext ctx);
+	void enterIntvariabledeclaration(scannerParser.IntvariabledeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link scannerParser#variabledeclaration}.
+	 * Exit a parse tree produced by {@link scannerParser#intvariabledeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariabledeclaration(scannerParser.VariabledeclarationContext ctx);
+	void exitIntvariabledeclaration(scannerParser.IntvariabledeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link scannerParser#floatvariabledeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatvariabledeclaration(scannerParser.FloatvariabledeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link scannerParser#floatvariabledeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatvariabledeclaration(scannerParser.FloatvariabledeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link scannerParser#mathoperation}.
 	 * @param ctx the parse tree

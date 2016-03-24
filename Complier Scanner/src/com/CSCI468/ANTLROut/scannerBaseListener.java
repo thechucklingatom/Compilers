@@ -3,6 +3,8 @@ package com.CSCI468.ANTLROut;
 
 
 import java.util.HashMap;
+import java.util.Stack;
+
 
 
 
@@ -45,13 +47,25 @@ public class scannerBaseListener implements scannerListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariabledeclaration(scannerParser.VariabledeclarationContext ctx) { }
+	@Override public void enterIntvariabledeclaration(scannerParser.IntvariabledeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariabledeclaration(scannerParser.VariabledeclarationContext ctx) { }
+	@Override public void exitIntvariabledeclaration(scannerParser.IntvariabledeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFloatvariabledeclaration(scannerParser.FloatvariabledeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFloatvariabledeclaration(scannerParser.FloatvariabledeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -3,6 +3,8 @@ package com.CSCI468.ANTLROut;
 
 
 import java.util.HashMap;
+import java.util.Stack;
+
 
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
@@ -36,7 +38,14 @@ public class scannerBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariabledeclaration(scannerParser.VariabledeclarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIntvariabledeclaration(scannerParser.IntvariabledeclarationContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFloatvariabledeclaration(scannerParser.FloatvariabledeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
