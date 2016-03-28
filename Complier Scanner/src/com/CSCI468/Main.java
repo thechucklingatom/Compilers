@@ -27,22 +27,12 @@ public class Main {
        
         //generateFiles();
         
-        Stack myStack = new Stack();
-        
-        while (!myStack.empty())
-        {
-        System.out.println(myStack.pop());
-        }
-        
-        
-        
-        
         ANTLRFileStream fileStream;
 
        try{
             fileStream = new ANTLRFileStream(args[0]);
         }catch(ArrayIndexOutOfBoundsException ex){
-            fileStream = new ANTLRFileStream("res/Step3/inputs/test9.micro");
+            fileStream = new ANTLRFileStream("res/Step3/inputs/test8.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 

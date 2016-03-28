@@ -19,26 +19,6 @@ import java.util.ArrayList;
     static Stack<String> myStack = new Stack();
     static Stack<String> tempStack = new Stack();
 
-    public String returnNonNull(String string1, String string2)
-    {
-    if (string1 != null && string2 != null)
-    {
-    return null;
-    }
-    else if (string1 == null && string2 == null)
-    {
-    return null;
-    }
-    else if (string1 == null)
-    {
-    return string2;
-    }
-    else
-    {
-    return string1;
-    }
-
-    }
 
 
 }
