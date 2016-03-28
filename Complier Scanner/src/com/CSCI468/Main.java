@@ -35,7 +35,7 @@ public class Main {
        try{
             fileStream = new ANTLRFileStream(args[0]);
         }catch(ArrayIndexOutOfBoundsException ex){
-            fileStream = new ANTLRFileStream("res/Step3/inputs/test20.micro");
+            fileStream = new ANTLRFileStream("res/Step3/inputs/test8.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 

@@ -41,7 +41,20 @@ import java.util.Stack;
 
 }
 
-pre : start EOF {};
+pre : start EOF {
+
+
+//Pop global String stack here
+
+
+
+
+
+
+
+
+
+};
 start : start start 
         
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +122,7 @@ start : start start
          }
         else
             {
-            System.out.println("1DECLARATION ERROR " + $IDENTIFIER.text);
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
         }
@@ -151,7 +164,7 @@ start : start start
 
         else
             {
-            System.out.println("2DECLARATION ERROR " + $IDENTIFIER.text);
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
         }
@@ -176,7 +189,7 @@ start : start start
          
         else
             {
-            System.out.println("3DECLARATION ERROR " + $IDENTIFIER.text);
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
 
@@ -208,7 +221,7 @@ start : start start
             System.out.println(ST.get($IDENTIFIER.text).scope);
             System.out.println((String) myStack.peek());
 
-            System.out.println("4DECLARATION ERROR " + $IDENTIFIER.text);
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             //System.exit(0);
          }
         
@@ -238,7 +251,7 @@ start : start start
          }
         else
             {
-            System.out.println("5DECLARATION ERROR " + $IDENTIFIER.text);
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
         
@@ -343,7 +356,7 @@ intvariabledeclaration : ',' WS* IDENTIFIER intvariabledeclaration
          }
         else
             {
-            System.out.println("6DECLARATION ERROR " + $IDENTIFIER.text);
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
         }
@@ -371,7 +384,7 @@ floatvariabledeclaration : ',' WS* IDENTIFIER floatvariabledeclaration
          }
         else
             {
-            System.out.println("7DECLARATION ERROR " + $IDENTIFIER.text);
+            System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
         }

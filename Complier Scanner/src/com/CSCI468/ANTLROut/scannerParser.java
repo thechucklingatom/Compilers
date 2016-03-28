@@ -166,7 +166,7 @@ public class scannerParser extends Parser {
 			start(0);
 			setState(27);
 			match(EOF);
-
+			System.out.println("TestForhteEnd");
 			}
 		}
 		catch (RecognitionException re) {
@@ -372,7 +372,7 @@ public class scannerParser extends Parser {
 				         }
 				        else
 				            {
-				            System.out.println("1DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				            System.out.println("DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            System.exit(0);
 				            }
 				        
@@ -424,7 +424,7 @@ public class scannerParser extends Parser {
 
 				        else
 				            {
-				            System.out.println("2DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				            System.out.println("DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            System.exit(0);
 				            }
 				        
@@ -498,7 +498,7 @@ public class scannerParser extends Parser {
 				         
 				        else
 				            {
-				            System.out.println("3DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				            System.out.println("DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            System.exit(0);
 				            }
 
@@ -551,7 +551,7 @@ public class scannerParser extends Parser {
 				            System.out.println(ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).scope);
 				            System.out.println((String) myStack.peek());
 
-				            System.out.println("4DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				            System.out.println("DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            //System.exit(0);
 				         }
 				        
@@ -602,7 +602,7 @@ public class scannerParser extends Parser {
 				         }
 				        else
 				            {
-				            System.out.println("5DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				            System.out.println("DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            System.exit(0);
 				            }
 				        
@@ -654,9 +654,9 @@ public class scannerParser extends Parser {
 
 				        myStack.push((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				        //System.out.println();
-				        //System.out.println("Symbol Table " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				        //System.out.println("Symbol table " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 
-				         String text = (System.lineSeparator() + "Symbol Table " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				         String text = (System.lineSeparator() + "Symbol table " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				         tempStack.push(text);
 				        //POP Stack here
 				         while (!tempStack.empty())
@@ -817,7 +817,7 @@ public class scannerParser extends Parser {
 				        myStack.push("BLOCK " + numBlock);
 
 				        System.out.println();
-				        System.out.println("Symbol Table BLOCK " + numBlock);
+				        System.out.println("Symbol table BLOCK " + numBlock);
 
 
 
@@ -837,7 +837,7 @@ public class scannerParser extends Parser {
 
 
 				        System.out.println();
-				        System.out.println("Symbol Table BLOCK " + numBlock);
+				        System.out.println("Symbol table BLOCK " + numBlock);
 
 
 				        
@@ -963,7 +963,7 @@ public class scannerParser extends Parser {
 				         }
 				        else
 				            {
-				            System.out.println("6DECLARATION ERROR " + (((IntvariabledeclarationContext)_localctx).IDENTIFIER!=null?((IntvariabledeclarationContext)_localctx).IDENTIFIER.getText():null));
+				            System.out.println("DECLARATION ERROR " + (((IntvariabledeclarationContext)_localctx).IDENTIFIER!=null?((IntvariabledeclarationContext)_localctx).IDENTIFIER.getText():null));
 				            System.exit(0);
 				            }
 				        }
@@ -1071,7 +1071,7 @@ public class scannerParser extends Parser {
 				         }
 				        else
 				            {
-				            System.out.println("7DECLARATION ERROR " + (((FloatvariabledeclarationContext)_localctx).IDENTIFIER!=null?((FloatvariabledeclarationContext)_localctx).IDENTIFIER.getText():null));
+				            System.out.println("DECLARATION ERROR " + (((FloatvariabledeclarationContext)_localctx).IDENTIFIER!=null?((FloatvariabledeclarationContext)_localctx).IDENTIFIER.getText():null));
 				            System.exit(0);
 				            }
 				        }
