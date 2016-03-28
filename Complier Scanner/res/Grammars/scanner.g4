@@ -248,8 +248,18 @@ start : start start
         {
 
         myStack.push($IDENTIFIER.text);
-        System.out.println();
-        System.out.println("Symbol Table " + $IDENTIFIER.text);
+        //System.out.println();
+        //System.out.println("Symbol Table " + $IDENTIFIER.text);
+
+         String text = (System.lineSeparator() + "Symbol Table " + $IDENTIFIER.text);
+         tempStack.push(text);
+        //POP Stack here
+         while (!tempStack.empty())
+        {
+        System.out.println(tempStack.pop());
+        }
+
+
         
         }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -274,6 +284,8 @@ start : start start
         {
         numBlock++;
         myStack.push("BLOCK " + numBlock);
+
+        System.out.println();
         System.out.println("Symbol Table BLOCK " + numBlock);
 
 
@@ -286,6 +298,9 @@ start : start start
         {
         numBlock++;
         myStack.push("BLOCK " + numBlock);
+
+
+        System.out.println();
         System.out.println("Symbol Table BLOCK " + numBlock);
 
 
@@ -361,13 +376,17 @@ if ($FLOATTYPE != null)
 {
 
             ST.put($IDENTIFIER.text, (new STC($FLOATTYPE.text, "noValue", (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type FLOAT");            
+            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            String text = ("name " + $IDENTIFIER.text + " type FLOAT");
+            tempStack.push(text);            
 
 }
 else
 {
             ST.put($IDENTIFIER.text, (new STC($INTTYPE.text, "noValue", (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            String text = ("name " + $IDENTIFIER.text + " type INT");
+            tempStack.push(text);
 }
 } | ;                                                             //FUNCTION INT main(int a, int b)
 functionargs2 : ',' WS* (INTTYPE | FLOATTYPE) WS IDENTIFIER functionargs2
@@ -376,13 +395,17 @@ if ($FLOATTYPE != null)
 {
 
             ST.put($IDENTIFIER.text, (new STC($FLOATTYPE.text, "noValue", (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type FLOAT");            
+            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            String text = ("name " + $IDENTIFIER.text + " type FLOAT");
+            tempStack.push(text);            
 
 }
 else
 {
             ST.put($IDENTIFIER.text, (new STC($INTTYPE.text, "noValue", (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            String text = ("name " + $IDENTIFIER.text + " type INT");
+            tempStack.push(text);
 }
 
 }
