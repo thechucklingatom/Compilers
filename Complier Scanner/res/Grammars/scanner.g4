@@ -256,9 +256,9 @@ start : start start
 
         myStack.push($IDENTIFIER.text);
         //System.out.println();
-        //System.out.println("Symbol Table " + $IDENTIFIER.text);
+        //System.out.println("Symbol table " + $IDENTIFIER.text);
 
-         String text = (System.lineSeparator() + "Symbol Table " + $IDENTIFIER.text);
+         String text = (System.lineSeparator() + "Symbol table " + $IDENTIFIER.text);
          tempStack.push(text);
         //POP Stack here
          while (!tempStack.empty())
@@ -298,7 +298,7 @@ start : start start
         myStack.push("BLOCK " + numBlock);
 
         System.out.println();
-        System.out.println("Symbol Table BLOCK " + numBlock);
+        System.out.println("Symbol table BLOCK " + numBlock);
 
 
 
@@ -313,7 +313,7 @@ start : start start
 
 
         System.out.println();
-        System.out.println("Symbol Table BLOCK " + numBlock);
+        System.out.println("Symbol table BLOCK " + numBlock);
 
 
         }
