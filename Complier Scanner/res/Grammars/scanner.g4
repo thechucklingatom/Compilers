@@ -4,6 +4,7 @@ grammar scanner;
 
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.ArrayList;
 
 
 }
@@ -13,9 +14,10 @@ import java.util.Stack;
     
     int numBlock = 0;
 
+    ArrayList<String> textArray = new ArrayList<>();
     public HashMap<String, STC> ST = new HashMap();
-    static Stack myStack = new Stack();
-    static Stack tempStack = new Stack();
+    static Stack<String> myStack = new Stack();
+    static Stack<String> tempStack = new Stack();
 
     public String returnNonNull(String string1, String string2)
     {
@@ -46,7 +48,13 @@ pre : start EOF {
 
 //Pop global String stack here
 
+for (String s : textArray)
+{
+System.out.println(s);
 
+
+
+}
 
 
 
@@ -63,7 +71,7 @@ start : start start
         {
 
         myStack.push("GLOBAL");
-        System.out.println("Symbol table GLOBAL");
+        textArray.add("Symbol table GLOBAL");
 
         }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +80,7 @@ start : start start
         {
 
         myStack.push("GLOBAL");
-        System.out.println("Symbol table GLOBAL");
+        textArray.add("Symbol table GLOBAL");
         }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         | KEYWORD WS                                                                                                                                    
@@ -93,7 +101,7 @@ start : start start
             {
             ST.put($IDENTIFIER.text, (new STC($INTTYPE.text, "noValue", (String) myStack.peek())));
 
-            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //textArray.add("name " + $IDENTIFIER.text + " type INT");
             String text = ("name " + $IDENTIFIER.text + " type INT");
             tempStack.push(text);
 
@@ -101,7 +109,7 @@ start : start start
             ////////
             while (!tempStack.empty())
             {
-            System.out.println(tempStack.pop());
+            textArray.add(tempStack.pop());
             }
             }
          //Scope is different between two variables of the same name. Ex Int a (Scope Global), Int a (Scope FunctionName)
@@ -110,14 +118,14 @@ start : start start
          ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text, (String) myStack.peek())));
          
 
-        //System.out.println("name " + $IDENTIFIER.text + " type INT");
+        //textArray.add("name " + $IDENTIFIER.text + " type INT");
         String text = ("name " + $IDENTIFIER.text + " type INT");
         tempStack.push(text);
 
         //POP Stack here
         while (!tempStack.empty())
         {
-        System.out.println(tempStack.pop());
+        textArray.add(tempStack.pop());
         }
          }
         else
@@ -134,7 +142,7 @@ start : start start
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC($FLOATTYPE.text, "noValue", (String) myStack.peek())));
-            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            //textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
             String text = "name " + $IDENTIFIER.text + " type FLOAT";
             tempStack.push(text);
 
@@ -142,7 +150,7 @@ start : start start
             //POP stack here
             while (!tempStack.empty())
         {
-        System.out.println(tempStack.pop());
+        textArray.add(tempStack.pop());
         }
 
             
@@ -150,14 +158,14 @@ start : start start
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("FLOAT", $FLOATLITERAL.text, (String) myStack.peek())));
-         //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+         //textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
          String text = "name " + $IDENTIFIER.text + " type FLOAT";
          tempStack.push(text);
 
          //POP Stack here
          while (!tempStack.empty())
         {
-        System.out.println(tempStack.pop());
+        textArray.add(tempStack.pop());
         }
          }
          
@@ -176,7 +184,7 @@ start : start start
         if (!ST.containsKey($IDENTIFIER.text) || (ST.containsKey($IDENTIFIER.text) && $STRINGTYPE == null))
             {
             ST.put($IDENTIFIER.text, (new STC("STRING", ($STRINGLITERAL.text).substring(1, ($STRINGLITERAL.text).length()-1), (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type STRING value " + $STRINGLITERAL.text);
+            textArray.add("name " + $IDENTIFIER.text + " type STRING value " + $STRINGLITERAL.text);
             }
          else if (ST.containsKey($IDENTIFIER.text) && $STRINGTYPE == null)
          {
@@ -203,7 +211,7 @@ start : start start
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text, (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type INT");
+            textArray.add("name " + $IDENTIFIER.text + " type INT");
             }
          //Modifying the value of the given variable
          else if (ST.containsKey($IDENTIFIER.text) && $INTTYPE == null)
@@ -214,12 +222,12 @@ start : start start
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text,(String) myStack.peek())));
-         System.out.println("name " + $IDENTIFIER.text + " type INT");
+         textArray.add("name " + $IDENTIFIER.text + " type INT");
          }
         else
          {
-            System.out.println(ST.get($IDENTIFIER.text).scope);
-            System.out.println((String) myStack.peek());
+            textArray.add(ST.get($IDENTIFIER.text).scope);
+            textArray.add((String) myStack.peek());
 
             System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             //System.exit(0);
@@ -236,7 +244,7 @@ start : start start
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC("FLOAT", $FLOATLITERAL.text, (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
             }
          //Modifying the given variable
          else if (ST.containsKey($IDENTIFIER.text) && $FLOATTYPE == null)
@@ -247,7 +255,7 @@ start : start start
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("FLOAT", $FLOATLITERAL.text, (String) myStack.peek())));
-         System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+         textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
          }
         else
             {
@@ -268,15 +276,15 @@ start : start start
         {
 
         myStack.push($IDENTIFIER.text);
-        //System.out.println();
-        //System.out.println("Symbol table " + $IDENTIFIER.text);
+        //textArray.add();
+        //textArray.add("Symbol table " + $IDENTIFIER.text);
 
          String text = (System.lineSeparator() + "Symbol table " + $IDENTIFIER.text);
          tempStack.push(text);
         //POP Stack here
          while (!tempStack.empty())
         {
-        System.out.println(tempStack.pop());
+        textArray.add(tempStack.pop());
         }
 
 
@@ -310,8 +318,8 @@ start : start start
         numBlock++;
         myStack.push("BLOCK " + numBlock);
 
-        System.out.println();
-        System.out.println("Symbol table BLOCK " + numBlock);
+        textArray.add("");
+        textArray.add("Symbol table BLOCK " + numBlock);
 
 
 
@@ -325,8 +333,8 @@ start : start start
         myStack.push("BLOCK " + numBlock);
 
 
-        System.out.println();
-        System.out.println("Symbol table BLOCK " + numBlock);
+        textArray.add("");
+        textArray.add("Symbol table BLOCK " + numBlock);
 
 
         }
@@ -343,14 +351,14 @@ intvariabledeclaration : ',' WS* IDENTIFIER intvariabledeclaration
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC("INT", "noValue", (String) myStack.peek())));
-            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //textArray.add("name " + $IDENTIFIER.text + " type INT");
             String text = ("name " + $IDENTIFIER.text + " type INT");
             tempStack.push(text);
             }
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("INT", "noValue", (String) myStack.peek())));
-         //System.out.println("name " + $IDENTIFIER.text + " type INT");
+         //textArray.add("name " + $IDENTIFIER.text + " type INT");
          String text = ("name " + $IDENTIFIER.text + " type INT");
          tempStack.push(text);
          }
@@ -371,14 +379,14 @@ floatvariabledeclaration : ',' WS* IDENTIFIER floatvariabledeclaration
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC("FLOAT", "noValue", (String) myStack.peek())));
-            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            //textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
             String text = "name " + $IDENTIFIER.text + " type FLOAT";
             tempStack.push(text);
             }
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("FLOAT", "noValue", (String) myStack.peek())));
-         System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+         textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
          String text = "name " + $IDENTIFIER.text + " type FLOAT";
          tempStack.push(text);
          }
@@ -401,7 +409,7 @@ if ($FLOATTYPE != null)
 {
 
             ST.put($IDENTIFIER.text, (new STC($FLOATTYPE.text, "noValue", (String) myStack.peek())));
-            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            //textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
             String text = ("name " + $IDENTIFIER.text + " type FLOAT");
             tempStack.push(text);            
 
@@ -409,7 +417,7 @@ if ($FLOATTYPE != null)
 else
 {
             ST.put($IDENTIFIER.text, (new STC($INTTYPE.text, "noValue", (String) myStack.peek())));
-            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //textArray.add("name " + $IDENTIFIER.text + " type INT");
             String text = ("name " + $IDENTIFIER.text + " type INT");
             tempStack.push(text);
 }
@@ -420,7 +428,7 @@ if ($FLOATTYPE != null)
 {
 
             ST.put($IDENTIFIER.text, (new STC($FLOATTYPE.text, "noValue", (String) myStack.peek())));
-            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            //textArray.add("name " + $IDENTIFIER.text + " type FLOAT");
             String text = ("name " + $IDENTIFIER.text + " type FLOAT");
             tempStack.push(text);            
 
@@ -428,7 +436,7 @@ if ($FLOATTYPE != null)
 else
 {
             ST.put($IDENTIFIER.text, (new STC($INTTYPE.text, "noValue", (String) myStack.peek())));
-            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //textArray.add("name " + $IDENTIFIER.text + " type INT");
             String text = ("name " + $IDENTIFIER.text + " type INT");
             tempStack.push(text);
 }
