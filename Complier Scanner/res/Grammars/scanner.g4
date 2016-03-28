@@ -15,6 +15,7 @@ import java.util.Stack;
 
     public HashMap<String, STC> ST = new HashMap();
     static Stack myStack = new Stack();
+    static Stack tempStack = new Stack();
 
     public String returnNonNull(String string1, String string2)
     {
@@ -78,15 +79,32 @@ start : start start
             {
             ST.put($IDENTIFIER.text, (new STC($INTTYPE.text, "noValue", (String) myStack.peek())));
 
-            System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            String text = ("name " + $IDENTIFIER.text + " type INT");
+            tempStack.push(text);
 
             //POP Stack here
             ////////
+            while (!tempStack.empty())
+            {
+            System.out.println(tempStack.pop());
             }
+            }
+         //Scope is different between two variables of the same name. Ex Int a (Scope Global), Int a (Scope FunctionName)
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text, (String) myStack.peek())));
-         System.out.println("name " + $IDENTIFIER.text + " type INT");
+         
+
+        //System.out.println("name " + $IDENTIFIER.text + " type INT");
+        String text = ("name " + $IDENTIFIER.text + " type INT");
+        tempStack.push(text);
+
+        //POP Stack here
+        while (!tempStack.empty())
+        {
+        System.out.println(tempStack.pop());
+        }
          }
         else
             {
@@ -102,12 +120,31 @@ start : start start
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC($FLOATTYPE.text, "noValue", (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type FLOAT");            
+            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            String text = "name " + $IDENTIFIER.text + " type FLOAT";
+            tempStack.push(text);
+
+
+            //POP stack here
+            while (!tempStack.empty())
+        {
+        System.out.println(tempStack.pop());
+        }
+
+            
             }
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("FLOAT", $FLOATLITERAL.text, (String) myStack.peek())));
-         System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+         //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+         String text = "name " + $IDENTIFIER.text + " type FLOAT";
+         tempStack.push(text);
+
+         //POP Stack here
+         while (!tempStack.empty())
+        {
+        System.out.println(tempStack.pop());
+        }
          }
          
 
@@ -211,6 +248,7 @@ start : start start
         {
 
         myStack.push($IDENTIFIER.text);
+        System.out.println();
         System.out.println("Symbol Table " + $IDENTIFIER.text);
         
         }
@@ -265,12 +303,16 @@ intvariabledeclaration : ',' WS* IDENTIFIER intvariabledeclaration
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC("INT", "noValue", (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type INT");
+            //System.out.println("name " + $IDENTIFIER.text + " type INT");
+            String text = ("name " + $IDENTIFIER.text + " type INT");
+            tempStack.push(text);
             }
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("INT", "noValue", (String) myStack.peek())));
-         System.out.println("name " + $IDENTIFIER.text + " type INT");
+         //System.out.println("name " + $IDENTIFIER.text + " type INT");
+         String text = ("name " + $IDENTIFIER.text + " type INT");
+         tempStack.push(text);
          }
         else
             {
@@ -289,12 +331,16 @@ floatvariabledeclaration : ',' WS* IDENTIFIER floatvariabledeclaration
         if (!ST.containsKey($IDENTIFIER.text))
             {
             ST.put($IDENTIFIER.text, (new STC("FLOAT", "noValue", (String) myStack.peek())));
-            System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            //System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+            String text = "name " + $IDENTIFIER.text + " type FLOAT";
+            tempStack.push(text);
             }
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("FLOAT", "noValue", (String) myStack.peek())));
          System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
+         String text = "name " + $IDENTIFIER.text + " type FLOAT";
+         tempStack.push(text);
          }
         else
             {

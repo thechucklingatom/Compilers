@@ -5,6 +5,9 @@ import com.CSCI468.ANTLROut.scannerParser;
 import org.antlr.v4.runtime.*;
 import java.io.IOException;
 
+
+
+import java.util.Stack;
 /**
  * Created by Robert Putnam on 1/23/2016.
  *
@@ -17,12 +20,22 @@ public class Main {
        
         //generateFiles();
         
+        Stack myStack = new Stack();
+        
+        while (!myStack.empty())
+        {
+        System.out.println(myStack.pop());
+        }
+        
+        
+        
+        
         ANTLRFileStream fileStream;
 
        try{
             fileStream = new ANTLRFileStream(args[0]);
         }catch(ArrayIndexOutOfBoundsException ex){
-            fileStream = new ANTLRFileStream("res/Step2/inputs/test21.micro");
+            fileStream = new ANTLRFileStream("res/Step2/inputs/test5.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 
@@ -36,10 +49,10 @@ public class Main {
         parser.pre();
         
         
-        for(String s : parser.ST.keySet()){
-            System.out.println(s);
-        System.out.println(parser.ST.get(s).toString());    
-        }
+        //for(String s : parser.ST.keySet()){
+        //    System.out.println(s);
+        //System.out.println(parser.ST.get(s).toString());    
+        //}
 
         
         
