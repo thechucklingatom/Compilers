@@ -74,6 +74,7 @@ start : start start
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         | (INTTYPE) WS IDENTIFIER intvariabledeclaration                                                                                                     
         //INT a, b;
+        //INT a;
         {
         if (!ST.containsKey($IDENTIFIER.text))
             {
@@ -191,13 +192,16 @@ start : start start
             ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text, (String) myStack.peek())));
             System.out.println("name " + $IDENTIFIER.text + " type INT");
             }
+         //Modifying the value of the given variable
          else if (ST.containsKey($IDENTIFIER.text) && $INTTYPE == null)
          {
          ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text, ST.get($IDENTIFIER.text).scope)));
          }
+         //Creating a new variable with the same name, but in a different scope
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text,(String) myStack.peek())));
+         System.out.println("name " + $IDENTIFIER.text + " type INT");
          }
         else
          {
@@ -221,13 +225,16 @@ start : start start
             ST.put($IDENTIFIER.text, (new STC("FLOAT", $FLOATLITERAL.text, (String) myStack.peek())));
             System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
             }
+         //Modifying the given variable
          else if (ST.containsKey($IDENTIFIER.text) && $FLOATTYPE == null)
          {
          ST.put($IDENTIFIER.text, (new STC("FLOAT", $FLOATLITERAL.text, ST.get($IDENTIFIER.text).scope)));
          }
+         //Creating a new variable with the same name, but in a different scope
          else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
          {
          ST.put($IDENTIFIER.text, (new STC("FLOAT", $FLOATLITERAL.text, (String) myStack.peek())));
+         System.out.println("name " + $IDENTIFIER.text + " type FLOAT");
          }
         else
             {
@@ -268,6 +275,11 @@ start : start start
 
         | IDENTIFIER WS* ':=' WS* '('* variable ')'* mathoperation                                                                         
          //c:=(a*3+i)+p*p+5+j+k+3+y*u/r;
+{
+
+
+
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////        
 
         | 'RETURN' WS variable mathoperation
