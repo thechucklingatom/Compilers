@@ -71,9 +71,11 @@ public class IR2Tiny {
                 arr[i] = arr[i].replace("$T", "r");
                 Integer toReplace = Integer.parseInt(arr[i].substring(1)) - 1;
                 arr[i] = arr[i].replace(arr[i].substring(1), toReplace.toString());
-                System.out.println(arr[i]);  
-                outputList.add(arr[i]);
+                System.out.println(arr[i]);
             }
+            
+              
+            outputList.add(arr[i]);
         }
     }
     
