@@ -90,6 +90,14 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
+            else if(temp.matches("GTI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("NEI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
             else if(temp.matches("WRITEI [\\$A-Za-z0-9]*" )){
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
@@ -100,6 +108,21 @@ public class IR2Tiny {
             outputList.add("label");
             outputList.add(labelName[labelName.length-1]);
             }
+            else if (temp.matches("JUMP [\\$A-Za-z0-9]*"))
+            {
+            String[] labelName = temp.split(" ");
+            outputList.add("jmp");
+            outputList.add(labelName[labelName.length-1]);
+            }            
+            
+            else if (temp.matches("WRITES newline"))
+            {
+            outputList.add("sys");
+            outputList.add("writes"); 
+            outputList.add("newline"); 
+            }
+            
+            
             
             
             //else if (temp.matches("RET"))
@@ -117,7 +140,7 @@ public class IR2Tiny {
         }
         
         
-        
+        //Printing out the array here
         for(int i = 0; i<outputList.size(); i++)
         {
             //Three variables per line
@@ -125,6 +148,21 @@ public class IR2Tiny {
             {
             System.out.println("label " + outputList.get(i+1));
             i++;
+            }
+            else if (outputList.get(i).matches("jmp"))
+            {
+            System.out.println("jmp " + outputList.get(i+1));
+            i++;
+            }
+            else if (outputList.get(i).matches("jgt"))
+            {
+            System.out.println("jgt " + outputList.get(i+1));
+            i++;    
+            }
+            else if (outputList.get(i).matches("jne"))
+            {
+            System.out.println("jne " + outputList.get(i+1));
+            i++;    
             }
             else
             {
@@ -197,6 +235,29 @@ public class IR2Tiny {
                 arr.set(i+3, "divi");
                 arr.add(i+4, var2);
                 arr.add(i+5, var3);
+                }
+                //GTI to cmpi and jgt
+                else if (arr.get(i).matches("GTI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "cmpi");
+                arr.set(i+1, var1);
+                arr.set(i+2, var2);
+                arr.set(i+3, "jgt");
+                arr.add(i+4, var3);
+                }
+                else if (arr.get(i).matches("NEI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "cmpi");
+                arr.set(i+1, var1);
+                arr.set(i+2, var2);
+                arr.set(i+3, "jne");
+                arr.add(i+4, var3);
                 }
                 else if (arr.get(i).matches("WRITEI"))
                 {
