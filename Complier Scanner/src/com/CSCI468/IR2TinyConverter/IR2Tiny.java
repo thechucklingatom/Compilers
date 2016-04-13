@@ -17,12 +17,13 @@ import java.util.ArrayList;
  */
 public class IR2Tiny {
     
-    ArrayList<String> outputList;
+    static ArrayList<String> outputList;
             
-    public IR2Tiny(){
+    //public IR2Tiny(){
+    public static void main(String[] args) throws IOException{
         outputList = new ArrayList();
         try{
-        BufferedReader reader = new BufferedReader(new FileReader("src/res/test1.txt.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("res/IR2Tiny/test1.txt.txt"));
         ArrayList<String> vars = new ArrayList();
         int counter = 0;
         
@@ -42,14 +43,14 @@ public class IR2Tiny {
                
         }
         
-        reader = new BufferedReader(new FileReader("src/res/test1.txt.txt"));
+        reader = new BufferedReader(new FileReader("src/res/IR2Tiny/test1.txt.txt"));
         
         while((temp = reader.readLine()) != null){
             String[] arr;
             if(temp.matches("STOREI [\\$A-Za-z0-9 ]*" )){
                 arr = temp.split(" ");
                 convert(arr);
-                //System.out.println("move " + );
+                //System.out.println("move" + );
             }
                 
         }
@@ -65,7 +66,7 @@ public class IR2Tiny {
         convert((String[])IRList.toArray());
     }
     
-    public void convert(String[] arr){
+    public static void convert(String[] arr){
         for(int i = 0; i < arr.length; i++){
             if (arr[i].matches("\\$[T0-9]*")){
                 arr[i] = arr[i].replace("$T", "r");
