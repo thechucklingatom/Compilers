@@ -55,10 +55,27 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
-            //if(temp.matches("MULTI [\\$A-Za-z0-9 ]*" )){
-            //    arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
-            //    convert(arr);
+            else if(temp.matches("MULTI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("ADDI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("DIVI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("WRITEI [\\$A-Za-z0-9]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            //else if (temp.matches("RET"))
+            //{
+            //outputList.add("sys halt");     
             //}
+            
 
                 
         }
@@ -74,8 +91,9 @@ public class IR2Tiny {
         {
             //Three variables per line
             System.out.println(outputList.get(i) + " " + outputList.get(i+1) + " " + outputList.get(i+2));
+            
         }
-        
+        System.out.println("sys halt");
         
         
     }
@@ -100,12 +118,54 @@ public class IR2Tiny {
                 arr.set(i,"move");
                 //System.out.println(arr[i]);
                 }
+                //MULTI to move and muli
                 else if (arr.get(i).matches("MULTI")){
-                arr.set(i, "muli");
-                //System.out.println(arr[i]);
-
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "muli");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
                 }
             
+                //ADDI to move and muli
+                else if (arr.get(i).matches("ADDI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "addi");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
+                }
+            
+                //Divi to move and muli
+                else if (arr.get(i).matches("DIVI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "divi");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
+                }
+                else if (arr.get(i).matches("WRITEI"))
+                {
+                String var1 = arr.get(i+1);
+                arr.set(i, "sys");
+                arr.set(i+1, "writei");
+                arr.add(i+2, var1);
+                }
             
               
             outputList.add(arr.get(i));
