@@ -29,6 +29,7 @@ public class IR2Tiny {
         int counter = 0;
         boolean hasNewline = false;
         //vars
+        //WIll not be obtained from the IR code, due to incorrect order of the variables
         String temp;
         while ((temp = reader.readLine()) != null) {
             if(temp.matches("STOREI [$A-Za-z0-9]* [A-Za-z]")){
@@ -93,6 +94,14 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
+            else if (temp.matches("LABEL [\\$A-Za-z0-9]*"))
+            {
+            String[] labelName = temp.split(" ");
+            outputList.add("label");
+            outputList.add(labelName[labelName.length-1]);
+            }
+            
+            
             //else if (temp.matches("RET"))
             //{
             //outputList.add("sys halt");     
@@ -109,11 +118,19 @@ public class IR2Tiny {
         
         
         
-        for(int i = 0; i<outputList.size()-2; i=i+3)
+        for(int i = 0; i<outputList.size(); i++)
         {
             //Three variables per line
+            if (outputList.get(i).matches("label"))
+            {
+            System.out.println("label " + outputList.get(i+1));
+            i++;
+            }
+            else
+            {
             System.out.println(outputList.get(i) + " " + outputList.get(i+1) + " " + outputList.get(i+2));
-            
+            i = i+2;
+                    }
         }
         System.out.println("sys halt");
         
