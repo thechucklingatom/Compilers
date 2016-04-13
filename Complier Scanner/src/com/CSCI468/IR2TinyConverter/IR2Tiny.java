@@ -42,8 +42,10 @@ public class IR2Tiny {
                 
                
         }
+        //vars region end
         
-        reader = new BufferedReader(new FileReader("src/res/IR2Tiny/test1.txt.txt"));
+        //
+        reader = new BufferedReader(new FileReader("res/IR2Tiny/test1.txt.txt"));
         
         while((temp = reader.readLine()) != null){
             String[] arr;
@@ -59,6 +61,17 @@ public class IR2Tiny {
         }catch(IOException e){
             
         }
+        
+        
+        
+        for(int i = 0; i<outputList.size()-2; i=i+3)
+        {
+            //Three variables per line
+            System.out.println(outputList.get(i) + " " + outputList.get(i+1) + " " + outputList.get(i+2));
+        }
+        
+        
+        
     }
     
     public IR2Tiny(ArrayList<String> IRList){
@@ -67,12 +80,19 @@ public class IR2Tiny {
     }
     
     public static void convert(String[] arr){
+        //Converting T vars to r vars
         for(int i = 0; i < arr.length; i++){
             if (arr[i].matches("\\$[T0-9]*")){
                 arr[i] = arr[i].replace("$T", "r");
                 Integer toReplace = Integer.parseInt(arr[i].substring(1)) - 1;
                 arr[i] = arr[i].replace(arr[i].substring(1), toReplace.toString());
-                System.out.println(arr[i]);
+                //System.out.println(arr[i]);
+            }
+            
+                //STOREI to move
+                else if (arr[i].matches("STOREI")){
+                arr[i] = "move";
+                //System.out.println(arr[i]);
             }
             
               
