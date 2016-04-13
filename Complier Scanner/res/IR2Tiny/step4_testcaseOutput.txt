@@ -1,0 +1,42 @@
+var a
+var b
+var i
+var p
+str newline "\n"
+label main 
+move 0 r0
+move r0 i
+move 0 r1
+move r1 a
+move 0 r2
+move r2 b
+label label1 
+move 10 r3
+cmpi i r3
+jeq label2
+sys readi p 
+move 10 r4
+cmpi p r4
+jle label3
+move 1 r5
+move a r6
+addi r5 r6
+move r6 a
+jmp label4 
+label label3 
+move 1 r7
+move b r8
+addi r7 r8
+move r8 b
+label label4 
+move 1 r9
+move i r10
+addi r9 r10
+move r10 i
+jmp label1 
+label label2 
+sys writei a 
+sys writes newline
+sys writei b 
+sys writes newline
+sys halt

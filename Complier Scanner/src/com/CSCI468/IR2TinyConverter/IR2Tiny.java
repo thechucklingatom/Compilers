@@ -24,10 +24,10 @@ public class IR2Tiny {
     public static void main(String[] args) throws IOException{
         outputList = new ArrayList();
         try{
-        BufferedReader reader = new BufferedReader(new FileReader("res/IR2Tiny/test1.txt.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("res/IR2Tiny/step4_testcase.txt"));
         ArrayList<String> vars = new ArrayList();
         int counter = 0;
-        
+        boolean hasNewline = false;
         //vars
         String temp;
         while ((temp = reader.readLine()) != null) {
@@ -40,13 +40,30 @@ public class IR2Tiny {
                 }
                 
             }
+            else if (temp.matches("READI [A-Za-z]"))
+            {
+                if (vars.contains(new String(new char[] {temp.charAt(temp.length()-1)}))){
+                    
+                }else{
+                    System.out.println("var " + temp.charAt(temp.length()-1));
+                    vars.add(new String(new char[] {temp.charAt(temp.length()-1)}));
+                }    
+                
+                
+                
+            }
+            else if (temp.matches("WRITES newline") && hasNewline == false)
+            {
+            System.out.println("str newline \"\\n\"");
+            hasNewline = true;
+            }
                 
                
         }
         //vars region end
         
         //
-        reader = new BufferedReader(new FileReader("res/IR2Tiny/test1.txt.txt"));
+        reader = new BufferedReader(new FileReader("res/IR2Tiny/step4_testcase.txt"));
         
         while((temp = reader.readLine()) != null){
             ArrayList<String> arr;
