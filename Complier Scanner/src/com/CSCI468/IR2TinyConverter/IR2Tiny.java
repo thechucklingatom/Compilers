@@ -24,7 +24,7 @@ public class IR2Tiny {
     public static void main(String[] args) throws IOException{
         outputList = new ArrayList();
         try{
-        BufferedReader reader = new BufferedReader(new FileReader("res/IR2Tiny/step4_testcase.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("res/IR2Tiny/step4_testcase2.txt"));
         ArrayList<String> vars = new ArrayList();
         int counter = 0;
         boolean hasNewline = false;
@@ -54,16 +54,21 @@ public class IR2Tiny {
             }
             else if (temp.matches("WRITES newline") && hasNewline == false)
             {
-            System.out.println("str newline \"\\n\"");
             hasNewline = true;
             }
                 
                
         }
+        
+        if (hasNewline == true)
+        {
+        System.out.println("str newline \"\\n\"");    
+        }
+        
         //vars region end
         
         //
-        reader = new BufferedReader(new FileReader("res/IR2Tiny/step4_testcase.txt"));
+        reader = new BufferedReader(new FileReader("res/IR2Tiny/step4_testcase2.txt"));
         
         while((temp = reader.readLine()) != null){
             ArrayList<String> arr;
