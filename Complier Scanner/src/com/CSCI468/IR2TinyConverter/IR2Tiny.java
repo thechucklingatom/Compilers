@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -48,12 +49,17 @@ public class IR2Tiny {
         reader = new BufferedReader(new FileReader("res/IR2Tiny/test1.txt.txt"));
         
         while((temp = reader.readLine()) != null){
-            String[] arr;
+            ArrayList<String> arr;
             if(temp.matches("STOREI [\\$A-Za-z0-9 ]*" )){
-                arr = temp.split(" ");
+                
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
-                //System.out.println("move" + );
             }
+            //if(temp.matches("MULTI [\\$A-Za-z0-9 ]*" )){
+            //    arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+            //    convert(arr);
+            //}
+
                 
         }
         }catch(FileNotFoundException e){
@@ -76,27 +82,33 @@ public class IR2Tiny {
     
     public IR2Tiny(ArrayList<String> IRList){
         outputList = new ArrayList();
-        convert((String[])IRList.toArray());
+        convert(IRList);
     }
     
-    public static void convert(String[] arr){
+    public static void convert(ArrayList<String> arr){
         //Converting T vars to r vars
-        for(int i = 0; i < arr.length; i++){
-            if (arr[i].matches("\\$[T0-9]*")){
-                arr[i] = arr[i].replace("$T", "r");
-                Integer toReplace = Integer.parseInt(arr[i].substring(1)) - 1;
-                arr[i] = arr[i].replace(arr[i].substring(1), toReplace.toString());
+        for(int i = 0; i < arr.size(); i++){
+            if (arr.get(i).matches("\\$[T0-9]*")){
+                arr.set(i, arr.get(i).replace("$T", "r"));
+                Integer toReplace = Integer.parseInt(arr.get(i).substring(1)) - 1;
+                arr.set(i, arr.get(i).replace(arr.get(i).substring(1), toReplace.toString()));
                 //System.out.println(arr[i]);
             }
             
                 //STOREI to move
-                else if (arr[i].matches("STOREI")){
-                arr[i] = "move";
+                else if (arr.get(i).matches("STOREI")){
+                arr.set(i,"move");
                 //System.out.println(arr[i]);
-            }
+                }
+                else if (arr.get(i).matches("MULTI")){
+                arr.set(i, "muli");
+                //System.out.println(arr[i]);
+
+                }
+            
             
               
-            outputList.add(arr[i]);
+            outputList.add(arr.get(i));
         }
     }
     
