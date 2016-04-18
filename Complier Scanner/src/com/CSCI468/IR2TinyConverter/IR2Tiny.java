@@ -31,6 +31,7 @@ public class IR2Tiny {
         boolean hasNewline = false;
         //vars
         //WIll not be obtained from the IR code, due to incorrect order of the variables
+        //Will be temporary for now
         String temp;
         while ((temp = reader.readLine()) != null) {
             if(temp.matches("STOREI [$A-Za-z0-9]* [A-Za-z]")){
@@ -99,6 +100,14 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
+            else if(temp.matches("EQI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }   
+            else if(temp.matches("LEI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
             else if(temp.matches("WRITEI [\\$A-Za-z0-9]*" )){
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
@@ -121,6 +130,14 @@ public class IR2Tiny {
             outputList.add("sys");
             outputList.add("writes"); 
             outputList.add("newline"); 
+            }
+            else if (temp.matches("READI [A-Za-z]"))
+            {
+            String[] varName = temp.split(" ");   
+            outputList.add("sys");
+            outputList.add("readi"); 
+            outputList.add(varName[varName.length-1] + " ");
+                
             }
             
             
@@ -147,12 +164,12 @@ public class IR2Tiny {
             //Three variables per line
             if (outputList.get(i).matches("label"))
             {
-            System.out.println("label " + outputList.get(i+1));
+            System.out.println("label " + outputList.get(i+1) + " ");
             i++;
             }
             else if (outputList.get(i).matches("jmp"))
             {
-            System.out.println("jmp " + outputList.get(i+1));
+            System.out.println("jmp " + outputList.get(i+1) + " ");
             i++;
             }
             else if (outputList.get(i).matches("jgt"))
@@ -163,6 +180,16 @@ public class IR2Tiny {
             else if (outputList.get(i).matches("jne"))
             {
             System.out.println("jne " + outputList.get(i+1));
+            i++;    
+            }
+            else if (outputList.get(i).matches("jeq"))
+            {
+            System.out.println("jeq " + outputList.get(i+1));
+            i++;    
+            }
+            else if (outputList.get(i).matches("jle"))
+            {
+            System.out.println("jle " + outputList.get(i+1));
             i++;    
             }
             else
@@ -260,12 +287,34 @@ public class IR2Tiny {
                 arr.set(i+3, "jne");
                 arr.add(i+4, var3);
                 }
+                else if (arr.get(i).matches("EQI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "cmpi");
+                arr.set(i+1, var1);
+                arr.set(i+2, var2);
+                arr.set(i+3, "jeq");
+                arr.add(i+4, var3);
+                }
+                else if (arr.get(i).matches("LEI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "cmpi");
+                arr.set(i+1, var1);
+                arr.set(i+2, var2);
+                arr.set(i+3, "jle");
+                arr.add(i+4, var3);
+                }
                 else if (arr.get(i).matches("WRITEI"))
                 {
                 String var1 = arr.get(i+1);
                 arr.set(i, "sys");
                 arr.set(i+1, "writei");
-                arr.add(i+2, var1);
+                arr.add(i+2, var1 + " ");
                 }
             
               
