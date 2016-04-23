@@ -13,8 +13,10 @@ import java.util.ArrayList;
 
     
     int numBlock = 0;
+    int registerCounter = 0;
 
     ArrayList<String> textArray = new ArrayList<>();
+    ArrayList<String> variableList = new ArrayList<>();
     public HashMap<String, STC> ST = new HashMap();
     static Stack<String> myStack = new Stack();
     static Stack<String> tempStack = new Stack();
@@ -78,36 +80,36 @@ start : start start
         //INT a;
         {
         if (!ST.containsKey($IDENTIFIER.text))
-            {
+        {
             ST.put($IDENTIFIER.text, (new STC($INTTYPE.text, "noValue", (String) myStack.peek())));
 
             //textArray.add("name " + $IDENTIFIER.text + " type INT");
-            String text = ("name " + $IDENTIFIER.text + " type INT");
+            String text = ("var" + $IDENTIFIER.text);
             tempStack.push(text);
 
             //POP Stack here
             ////////
             while (!tempStack.empty())
             {
+                variableList.add(tempStack.pop());
+            }
+        }
+         //Scope is different between two variables of the same name. Ex Int a (Scope Global), Int a (Scope FunctionName)
+        else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
+        {
+            ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text, (String) myStack.peek())));
+
+
+            //textArray.add("name " + $IDENTIFIER.text + " type INT");
+            String text = ("name " + $IDENTIFIER.text + " type INT");
+            tempStack.push(text);
+
+            //POP Stack here
+            while (!tempStack.empty())
+            {
             textArray.add(tempStack.pop());
             }
-            }
-         //Scope is different between two variables of the same name. Ex Int a (Scope Global), Int a (Scope FunctionName)
-         else if (!ST.get($IDENTIFIER.text).scope.equals((String) myStack.peek()))
-         {
-         ST.put($IDENTIFIER.text, (new STC("INT", $INTLITERAL.text, (String) myStack.peek())));
-         
-
-        //textArray.add("name " + $IDENTIFIER.text + " type INT");
-        String text = ("name " + $IDENTIFIER.text + " type INT");
-        tempStack.push(text);
-
-        //POP Stack here
-        while (!tempStack.empty())
-        {
-        textArray.add(tempStack.pop());
         }
-         }
         else
             {
             System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
