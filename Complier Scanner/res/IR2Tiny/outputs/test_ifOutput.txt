@@ -1,0 +1,31 @@
+var i
+var a
+var num
+label main 
+move 7 r0
+move r0 num
+move 2 r1
+move r1 i
+move 42 r2
+move r2 a
+move 5 r3
+cmpi i r3
+jge label1
+move num r4
+addi a r4
+move r4 num
+move 3 r5
+cmpi i r5
+jge label2
+move num r6
+addi a r6
+move r6 num
+label label2 
+jmp label3 
+label label1 
+move num r7
+subi a r7
+move r7 num
+label label3 
+sys writei num 
+sys halt

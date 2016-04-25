@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class IR2Tiny {
     
     static ArrayList<String> outputList;
-    static String fileName = "res/IR2Tiny/test1.txt.txt";
+    static String fileName = "res/IR2Tiny/step4_testcase2.txt";
             
     //public IR2Tiny(){
     public static void main(String[] args) throws IOException{
