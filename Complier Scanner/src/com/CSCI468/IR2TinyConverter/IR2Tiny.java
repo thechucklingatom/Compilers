@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class IR2Tiny {
     
     static ArrayList<String> outputList;
-    static String fileName = "res/IR2Tiny/test_expr.txt";
+    static String fileName = "res/IR2Tiny/test1.txt.txt";
             
     //public IR2Tiny(){
     public static void main(String[] args) throws IOException{
@@ -29,9 +29,11 @@ public class IR2Tiny {
         ArrayList<String> vars = new ArrayList();
         int counter = 0;
         boolean hasNewline = false;
+        //If Main is the only label, we don't print out label main for the tiny code
+        int labelCount = 0;
         //vars
-        //WIll not be obtained from the IR code, due to incorrect order of the variables
-        //Will be temporary for now
+        //Now just needs to create identical tiny outputs, so mismatching tiny code should be fine (variable order)
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         String temp;
         while ((temp = reader.readLine()) != null) {
             if(temp.matches("STOREI [$A-Za-z0-9]* [A-Za-z]")){
@@ -50,24 +52,36 @@ public class IR2Tiny {
                 }else{
                     System.out.println("var " + temp.charAt(temp.length()-1));
                     vars.add(new String(new char[] {temp.charAt(temp.length()-1)}));
-                }    
-                
-                
-                
+                }       
             }
+            else if (temp.matches("WRITEF [A-Za-z]"))
+            {
+                if (vars.contains(new String(new char[] {temp.charAt(temp.length()-1)}))){
+                    
+                }else{
+                    System.out.println("var " + temp.charAt(temp.length()-1));
+                    vars.add(new String(new char[] {temp.charAt(temp.length()-1)}));
+                }       
+            }            
             else if (temp.matches("WRITES newline") && hasNewline == false)
             {
             hasNewline = true;
             }
+            
+             else if (temp.matches("LABEL [\\$A-Za-z0-9]*"))
+            {
+            labelCount++;
+            }
+            
                 
                
         }
-        
+        //Checks if we need the newline var at the beginning.
         if (hasNewline == true)
         {
         System.out.println("str newline \"\\n\"");    
         }
-        
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //vars region end
         
         //
@@ -80,7 +94,15 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
+            else if(temp.matches("STOREF [\\$A-Za-z0-9. ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
             else if(temp.matches("MULTI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("MULTF [\\$A-Za-z0-9 ]*" )){
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
@@ -88,7 +110,15 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
+            else if(temp.matches("ADDF [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
             else if(temp.matches("DIVI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("DIVF [\\$A-Za-z0-9 ]*" )){
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
@@ -112,7 +142,20 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
-            else if (temp.matches("LABEL [\\$A-Za-z0-9]*"))
+            else if(temp.matches("WRITEF [\\$A-Za-z0-9]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("SUBI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            
+            
+            
+            
+            //Only print label main if there exists other labels within the program.
+            else if (temp.matches("LABEL [\\$A-Za-z0-9]*") && labelCount > 1)
             {
             String[] labelName = temp.split(" ");
             outputList.add("label");
@@ -223,6 +266,24 @@ public class IR2Tiny {
                 arr.set(i,"move");
                 //System.out.println(arr[i]);
                 }
+                //STOREF to move
+                else if (arr.get(i).matches("STOREF")){
+                arr.set(i,"move");
+                //System.out.println(arr[i]);
+                }
+                //SUBI to move and subi
+                else if (arr.get(i).matches("SUBI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "subi");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
+                }
                 //MULTI to move and muli
                 else if (arr.get(i).matches("MULTI")){
                 String var1 = arr.get(i+1);
@@ -236,8 +297,20 @@ public class IR2Tiny {
                 arr.add(i+4, var2);
                 arr.add(i+5, var3);
                 }
-            
-                //ADDI to move and muli
+                //MULTF to move and mulr
+                else if (arr.get(i).matches("MULTF")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "mulr");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
+                }
+                //ADDI to move and addi
                 else if (arr.get(i).matches("ADDI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
@@ -250,8 +323,21 @@ public class IR2Tiny {
                 arr.add(i+4, var2);
                 arr.add(i+5, var3);
                 }
+                //ADDF to move and addr
+                else if (arr.get(i).matches("ADDF")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "addr");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
+                }
             
-                //Divi to move and muli
+                //Divi to move and divi
                 else if (arr.get(i).matches("DIVI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
@@ -261,6 +347,19 @@ public class IR2Tiny {
                 arr.set(i+1, var1);
                 arr.set(i+2, var3);
                 arr.set(i+3, "divi");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
+                }
+                //DIVF to move and divr
+                else if (arr.get(i).matches("DIVF")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "divr");
                 arr.add(i+4, var2);
                 arr.add(i+5, var3);
                 }
@@ -309,12 +408,20 @@ public class IR2Tiny {
                 arr.set(i+3, "jle");
                 arr.add(i+4, var3);
                 }
+                //Spaces appear inconsistant after the writei
                 else if (arr.get(i).matches("WRITEI"))
                 {
                 String var1 = arr.get(i+1);
                 arr.set(i, "sys");
                 arr.set(i+1, "writei");
-                arr.add(i+2, var1 + " ");
+                arr.add(i+2, var1);
+                }
+                else if (arr.get(i).matches("WRITEF"))
+                {
+                String var1 = arr.get(i+1);
+                arr.set(i, "sys");
+                arr.set(i+1, "writer");
+                arr.add(i+2, var1);
                 }
             
               
