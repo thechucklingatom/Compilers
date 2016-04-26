@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class IR2Tiny {
     
     static ArrayList<String> outputList;
-    static String fileName = "res/IR2Tiny/step4_testcase2.txt";
+    static String fileName = "res/IR2Tiny/inputs/test_adv.txt";
             
     //public IR2Tiny(){
     public static void main(String[] args) throws IOException{
@@ -36,31 +36,32 @@ public class IR2Tiny {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         String temp;
         while ((temp = reader.readLine()) != null) {
-            if(temp.matches("STOREI [$A-Za-z0-9]* [A-Za-z]")){
-                if (vars.contains(new String(new char[] {temp.charAt(temp.length()-1)}))){
+            String[] dataRows=temp.split(" ");
+            if(temp.matches("STOREI [$A-Za-z0-9]* [A-Za-z]*")){
+                if (vars.contains(dataRows[dataRows.length-1])){
                     
                 }else{
-                    System.out.println("var " + temp.charAt(temp.length()-1));
-                    vars.add(new String(new char[] {temp.charAt(temp.length()-1)}));
+                    System.out.println("var " + dataRows[dataRows.length-1]);
+                    vars.add(dataRows[dataRows.length-1]);
                 }
                 
             }
-            else if (temp.matches("READI [A-Za-z]"))
+            else if (temp.matches("READI [A-Za-z]*"))
             {
-                if (vars.contains(new String(new char[] {temp.charAt(temp.length()-1)}))){
+                if (vars.contains(dataRows[dataRows.length-1])){
                     
                 }else{
-                    System.out.println("var " + temp.charAt(temp.length()-1));
-                    vars.add(new String(new char[] {temp.charAt(temp.length()-1)}));
-                }       
+                    System.out.println("var " + dataRows[dataRows.length-1]);
+                    vars.add(dataRows[dataRows.length-1]);
+                }      
             }
-            else if (temp.matches("WRITEF [A-Za-z]"))
+            else if (temp.matches("WRITEF [A-Za-z]*"))
             {
-                if (vars.contains(new String(new char[] {temp.charAt(temp.length()-1)}))){
+                if (vars.contains(dataRows[dataRows.length-1])){
                     
                 }else{
-                    System.out.println("var " + temp.charAt(temp.length()-1));
-                    vars.add(new String(new char[] {temp.charAt(temp.length()-1)}));
+                    System.out.println("var " + dataRows[dataRows.length-1]);
+                    vars.add(dataRows[dataRows.length-1]);
                 }       
             }            
             else if (temp.matches("WRITES newline") && hasNewline == false)
