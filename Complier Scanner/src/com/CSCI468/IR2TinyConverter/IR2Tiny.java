@@ -46,6 +46,15 @@ public class IR2Tiny {
                 }
                 
             }
+            if(temp.matches("STOREF [$A-Za-z0-9]* [A-Za-z]*")){
+                if (vars.contains(dataRows[dataRows.length-1])){
+                    
+                }else{
+                    System.out.println("var " + dataRows[dataRows.length-1]);
+                    vars.add(dataRows[dataRows.length-1]);
+                }
+                
+            }
             else if (temp.matches("READI [A-Za-z]*"))
             {
                 if (vars.contains(dataRows[dataRows.length-1])){
