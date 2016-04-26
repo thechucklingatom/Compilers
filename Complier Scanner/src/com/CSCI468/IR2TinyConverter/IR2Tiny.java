@@ -20,15 +20,20 @@ public class IR2Tiny {
     
     static ArrayList<String> outputList;
     static String fileName = "res/IR2Tiny/inputs/test_adv.txt";
-            
+    static ArrayList<String> vars;
+    static int variableSwapRegister;
+    static int maxCurrentTempRegister;
+    
     //public IR2Tiny(){
     public static void main(String[] args) throws IOException{
         outputList = new ArrayList();
         try{
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        ArrayList<String> vars = new ArrayList();
+        vars = new ArrayList();
         int counter = 0;
         boolean hasNewline = false;
+        variableSwapRegister = -1;
+        maxCurrentTempRegister = 0;
         //If Main is the only label, we don't print out label main for the tiny code
         int labelCount = 0;
         //vars
@@ -264,9 +269,25 @@ public class IR2Tiny {
     public static void convert(ArrayList<String> arr){
         //Converting T vars to r vars
         for(int i = 0; i < arr.size(); i++){
+            
+            //Temp vars to R values
             if (arr.get(i).matches("\\$[T0-9]*")){
                 arr.set(i, arr.get(i).replace("$T", "r"));
                 Integer toReplace = Integer.parseInt(arr.get(i).substring(1)) - 1;
+                
+                //Keeping track of the highest register number, once we have defined a variable swap register, we don't need to track it anymore.
+                if ((toReplace > maxCurrentTempRegister) && variableSwapRegister == -1)
+                {
+                maxCurrentTempRegister = toReplace;    
+                }
+                //We have the swap register taking a spot, so we remove the -1 offset as a result
+                if (variableSwapRegister != -1)
+                {
+                toReplace = toReplace + 1;    
+                }
+                
+                
+                
                 arr.set(i, arr.get(i).replace(arr.get(i).substring(1), toReplace.toString()));
                 //System.out.println(arr[i]);
             }
@@ -280,6 +301,22 @@ public class IR2Tiny {
                 else if (arr.get(i).matches("STOREF")){
                 arr.set(i,"move");
                 //System.out.println(arr[i]);
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);
+                
+                if (vars.contains(var1) && vars.contains(var2))
+                {
+                 if (variableSwapRegister == -1)   //Only define the swap register once
+                 {variableSwapRegister = maxCurrentTempRegister + 1;}   
+                 arr.set(i+1, var1);
+                 arr.set(i+2, ("r"+variableSwapRegister));
+                 arr.add(i+3, "move");
+                 arr.add(i+4, ("r"+variableSwapRegister));
+                 arr.add(i+5, var2);
+                 
+                    
+                    
+                }
                 }
                 //SUBI to move and subi
                 else if (arr.get(i).matches("SUBI")){
