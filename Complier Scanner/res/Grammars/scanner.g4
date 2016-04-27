@@ -14,13 +14,16 @@ import java.util.ArrayList;
     
     int numBlock = 0;
     int registerCounter = 0;
+    int labelCounter = 1;
 
     ArrayList<String> textArray = new ArrayList<>();
+    ArrayList<String> IRList = new ArrayList<>();
     ArrayList<String> variableList = new ArrayList<>();
     public HashMap<String, STC> ST = new HashMap();
     static Stack<String> myStack = new Stack();
     static Stack<String> tempStack = new Stack();
 
+    IRList.add(";IR Code");
 
 
 }
@@ -263,6 +266,7 @@ start : start start
 
          String text = (System.lineSeparator() + "Symbol table " + $IDENTIFIER.text);
          tempStack.push(text);
+         IRList.add(";LABEL " + $IDENTIFIER.text);
         //POP Stack here
          while (!tempStack.empty())
         {
@@ -302,6 +306,8 @@ start : start start
 
         textArray.add("");
         textArray.add("Symbol table BLOCK " + numBlock);
+        
+        IRList.add(";LABEL label" + labelCounter++);
 
 
 
@@ -317,7 +323,8 @@ start : start start
 
         textArray.add("");
         textArray.add("Symbol table BLOCK " + numBlock);
-
+        
+        IRList.add(";LABEL label" + labelCounter++);
 
         }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
