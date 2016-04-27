@@ -23,6 +23,7 @@ public class IR2Tiny {
     static ArrayList<String> vars;
     static int variableSwapRegister;
     static int maxCurrentTempRegister;
+    static int gefSwapRegister;
     
     //public IR2Tiny(){
     public static void main(String[] args) throws IOException{
@@ -33,6 +34,7 @@ public class IR2Tiny {
         int counter = 0;
         boolean hasNewline = false;
         variableSwapRegister = -1;
+        gefSwapRegister= -1;
         maxCurrentTempRegister = 0;
         //If Main is the only label, we don't print out label main for the tiny code
         int labelCount = 0;
@@ -153,6 +155,14 @@ public class IR2Tiny {
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
+            else if(temp.matches("LEF [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("GEF [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
             else if(temp.matches("WRITEI [\\$A-Za-z0-9]*" )){
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
@@ -162,6 +172,10 @@ public class IR2Tiny {
                 convert(arr);
             }
             else if(temp.matches("SUBI [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("SUBF [\\$A-Za-z0-9 ]*" )){
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
@@ -250,6 +264,11 @@ public class IR2Tiny {
             System.out.println("jle " + outputList.get(i+1));
             i++;    
             }
+            else if (outputList.get(i).matches("jge"))
+            {
+            System.out.println("jge " + outputList.get(i+1));
+            i++;    
+            }
             else
             {
             System.out.println(outputList.get(i) + " " + outputList.get(i+1) + " " + outputList.get(i+2));
@@ -276,12 +295,17 @@ public class IR2Tiny {
                 Integer toReplace = Integer.parseInt(arr.get(i).substring(1)) - 1;
                 
                 //Keeping track of the highest register number, once we have defined a variable swap register, we don't need to track it anymore.
-                if ((toReplace > maxCurrentTempRegister) && variableSwapRegister == -1)
+                //Apparently the gef command also gets its own dedicated register.
+                if ((toReplace > maxCurrentTempRegister))
                 {
                 maxCurrentTempRegister = toReplace;    
                 }
                 //We have the swap register taking a spot, so we remove the -1 offset as a result
                 if (variableSwapRegister != -1)
+                {
+                toReplace = toReplace + 1;    
+                }
+                if (gefSwapRegister != -1)
                 {
                 toReplace = toReplace + 1;    
                 }
@@ -307,7 +331,16 @@ public class IR2Tiny {
                 if (vars.contains(var1) && vars.contains(var2))
                 {
                  if (variableSwapRegister == -1)   //Only define the swap register once
-                 {variableSwapRegister = maxCurrentTempRegister + 1;}   
+                 {
+                  if (gefSwapRegister == -1)
+                     {
+                     variableSwapRegister = maxCurrentTempRegister + 1;
+                     } 
+                     else
+                     {
+                     variableSwapRegister = maxCurrentTempRegister + 2;    
+                     }    
+                 }   
                  arr.set(i+1, var1);
                  arr.set(i+2, ("r"+variableSwapRegister));
                  arr.add(i+3, "move");
@@ -328,6 +361,19 @@ public class IR2Tiny {
                 arr.set(i+1, var1);
                 arr.set(i+2, var3);
                 arr.set(i+3, "subi");
+                arr.add(i+4, var2);
+                arr.add(i+5, var3);
+                }
+                //SUBF to move and subr
+                else if (arr.get(i).matches("SUBF")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var1);
+                arr.set(i+2, var3);
+                arr.set(i+3, "subr");
                 arr.add(i+4, var2);
                 arr.add(i+5, var3);
                 }
@@ -454,6 +500,44 @@ public class IR2Tiny {
                 arr.set(i+2, var2);
                 arr.set(i+3, "jle");
                 arr.add(i+4, var3);
+                }
+                else if (arr.get(i).matches("LEF")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "cmpr");
+                arr.set(i+1, var1);
+                arr.set(i+2, var2);
+                arr.set(i+3, "jle");
+                arr.add(i+4, var3);
+                }
+                else if (arr.get(i).matches("GEF")){
+                 if (gefSwapRegister == -1)   //Only define the swap register once
+                 {
+                     if (variableSwapRegister == -1)
+                     {
+                     gefSwapRegister = maxCurrentTempRegister + 1;
+                     } 
+                     else
+                     {
+                     gefSwapRegister = maxCurrentTempRegister + 2;    
+                     }
+                 }
+                    
+                    
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "move");
+                arr.set(i+1, var2);
+                arr.set(i+2, "r"+gefSwapRegister);
+                arr.set(i+3, "cmpr");
+                arr.add(i+4, var1);
+                arr.add(i+5, "r"+gefSwapRegister);
+                arr.add(i+6, "jge");
+                arr.add(i+7, var3);
                 }
                 //Spaces appear inconsistant after the writei
                 else if (arr.get(i).matches("WRITEI"))
