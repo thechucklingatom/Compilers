@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class IR2Tiny {
     
     static ArrayList<String> outputList;
-    static String fileName = "res/IR2Tiny/inputs/test_if.txt";
+    static String fileName = "res/IR2Tiny/inputs/test_expr.txt";
     static ArrayList<String> vars;
     static int variableSwapRegister;
     static int maxCurrentTempRegister;
