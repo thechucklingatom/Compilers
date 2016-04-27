@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class IR2Tiny {
     
     static ArrayList<String> outputList;
-    static String fileName = "res/IR2Tiny/inputs/test_adv.txt";
+    static String fileName = "res/IR2Tiny/inputs/test_if.txt";
     static ArrayList<String> vars;
     static int variableSwapRegister;
     static int maxCurrentTempRegister;
@@ -160,6 +160,10 @@ public class IR2Tiny {
                 convert(arr);
             }
             else if(temp.matches("GEF [\\$A-Za-z0-9 ]*" )){
+                arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
+                convert(arr);
+            }
+            else if(temp.matches("GEI [\\$A-Za-z0-9 ]*" )){
                 arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                 convert(arr);
             }
@@ -499,6 +503,17 @@ public class IR2Tiny {
                 arr.set(i+1, var1);
                 arr.set(i+2, var2);
                 arr.set(i+3, "jle");
+                arr.add(i+4, var3);
+                }
+                else if (arr.get(i).matches("GEI")){
+                String var1 = arr.get(i+1);
+                String var2 = arr.get(i+2);    
+                String var3 = arr.get(i+3);    
+                    
+                arr.set(i, "cmpi");
+                arr.set(i+1, var1);
+                arr.set(i+2, var2);
+                arr.set(i+3, "jge");
                 arr.add(i+4, var3);
                 }
                 else if (arr.get(i).matches("LEF")){
