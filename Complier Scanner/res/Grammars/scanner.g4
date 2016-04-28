@@ -23,8 +23,6 @@ import java.util.ArrayList;
     static Stack<String> myStack = new Stack();
     static Stack<String> tempStack = new Stack();
 
-    IRList.add(";IR Code");
-
 
 }
 
@@ -57,6 +55,7 @@ start : start start
 
         myStack.push("GLOBAL");
         textArray.add("Symbol table GLOBAL");
+        IRList.add(";IR Code");
 
         }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,7 +184,8 @@ start : start start
             System.out.println("DECLARATION ERROR " + $IDENTIFIER.text);
             System.exit(0);
             }
-
+        
+        variableList.add("str " + $IDENTIFIER.text + " " + $STRINGLITERAL.text);
 
         }
         
@@ -218,8 +218,8 @@ start : start start
             //System.exit(0);
          }
         
-        IRList.add(";STOREI " + $INTLITERAL.text + " $T" + registerCounter);
-        IRList.add(";STOREI $T" + registerCounter++ + " " + $IDENTIFIER.text);
+        IRList.add(";STOREI " + $INTLITERAL.text + " \$T" + registerCounter);
+        IRList.add(";STOREI \$T" + registerCounter++ + " " + $IDENTIFIER.text);
         }
         
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
@@ -248,8 +248,8 @@ start : start start
             System.exit(0);
             }
         
-        IRList.add(";STOREF " + $INTLITERAL.text + " $T" + registerCounter);
-        IRList.add(";STOREF $T" + registerCounter++ + " " + $IDENTIFIER.text);
+        IRList.add(";STOREF " + $INTLITERAL.text + " \$T" + registerCounter);
+        IRList.add(";STOREF \$T" + registerCounter++ + " " + $IDENTIFIER.text);
             
         }
         

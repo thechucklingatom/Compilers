@@ -101,12 +101,15 @@ public class scannerParser extends Parser {
 
 	    
 	    int numBlock = 0;
+	    int registerCounter = 1;
+	    int labelCounter = 1;
 
 	    ArrayList<String> textArray = new ArrayList<>();
+	    ArrayList<String> IRList = new ArrayList<>();
+	    ArrayList<String> variableList = new ArrayList<>();
 	    public HashMap<String, STC> ST = new HashMap();
 	    static Stack<String> myStack = new Stack();
 	    static Stack<String> tempStack = new Stack();
-
 
 
 
@@ -285,6 +288,7 @@ public class scannerParser extends Parser {
 
 				        myStack.push("GLOBAL");
 				        textArray.add("Symbol table GLOBAL");
+				        IRList.add(";IR Code");
 
 				        
 				}
@@ -341,36 +345,36 @@ public class scannerParser extends Parser {
 				intvariabledeclaration();
 
 				        if (!ST.containsKey((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)))
-				            {
+				        {
 				            ST.put((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null), (new STC((((StartContext)_localctx).INTTYPE!=null?((StartContext)_localctx).INTTYPE.getText():null), "noValue", (String) myStack.peek())));
 
 				            //textArray.add("name " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null) + " type INT");
-				            String text = ("name " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null) + " type INT");
+				            String text = ("var" + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            tempStack.push(text);
 
 				            //POP Stack here
 				            ////////
 				            while (!tempStack.empty())
 				            {
+				                variableList.add(tempStack.pop());
+				            }
+				        }
+				         //Scope is different between two variables of the same name. Ex Int a (Scope Global), Int a (Scope FunctionName)
+				        else if (!ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).scope.equals((String) myStack.peek()))
+				        {
+				            ST.put((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null), (new STC("INT", (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null), (String) myStack.peek())));
+
+
+				            //textArray.add("name " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null) + " type INT");
+				            String text = ("name " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null) + " type INT");
+				            tempStack.push(text);
+
+				            //POP Stack here
+				            while (!tempStack.empty())
+				            {
 				            textArray.add(tempStack.pop());
 				            }
-				            }
-				         //Scope is different between two variables of the same name. Ex Int a (Scope Global), Int a (Scope FunctionName)
-				         else if (!ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).scope.equals((String) myStack.peek()))
-				         {
-				         ST.put((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null), (new STC("INT", (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null), (String) myStack.peek())));
-				         
-
-				        //textArray.add("name " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null) + " type INT");
-				        String text = ("name " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null) + " type INT");
-				        tempStack.push(text);
-
-				        //POP Stack here
-				        while (!tempStack.empty())
-				        {
-				        textArray.add(tempStack.pop());
 				        }
-				         }
 				        else
 				            {
 				            System.out.println("DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
@@ -502,7 +506,8 @@ public class scannerParser extends Parser {
 				            System.out.println("DECLARATION ERROR " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            System.exit(0);
 				            }
-
+				        
+				        variableList.add("str " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null) + " " + (((StartContext)_localctx).STRINGLITERAL!=null?((StartContext)_localctx).STRINGLITERAL.getText():null));
 
 				        
 				}
@@ -556,8 +561,8 @@ public class scannerParser extends Parser {
 				            //System.exit(0);
 				         }
 				        
-
-
+				        IRList.add(";STOREI " + (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null) + " $T" + registerCounter);
+				        IRList.add(";STOREI $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				        
 				}
 				break;
@@ -607,7 +612,8 @@ public class scannerParser extends Parser {
 				            System.exit(0);
 				            }
 				        
-
+				        IRList.add(";STOREF " + (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null) + " $T" + registerCounter);
+				        IRList.add(";STOREF $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				            
 				        
 				}
@@ -659,6 +665,7 @@ public class scannerParser extends Parser {
 
 				         String text = (System.lineSeparator() + "Symbol table " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				         tempStack.push(text);
+				         IRList.add(";LABEL " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				        //POP Stack here
 				         while (!tempStack.empty())
 				        {
@@ -819,6 +826,8 @@ public class scannerParser extends Parser {
 
 				        textArray.add("");
 				        textArray.add("Symbol table BLOCK " + numBlock);
+				        
+				        IRList.add(";LABEL label" + labelCounter++);
 
 
 
@@ -839,7 +848,8 @@ public class scannerParser extends Parser {
 
 				        textArray.add("");
 				        textArray.add("Symbol table BLOCK " + numBlock);
-
+				        
+				        IRList.add(";LABEL label" + labelCounter++);
 
 				        
 				}
