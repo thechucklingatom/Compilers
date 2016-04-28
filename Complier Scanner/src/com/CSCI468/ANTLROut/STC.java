@@ -18,4 +18,8 @@ public class STC extends Object {
   public String toString(){
       return "type=" + type + " value=" + value + " scope=" + scope;
   }
+  
+  public String getType(){
+      return type;
+  }
 }

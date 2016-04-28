@@ -22,6 +22,7 @@ import java.util.ArrayList;
     public HashMap<String, STC> ST = new HashMap();
     static Stack<String> myStack = new Stack();
     static Stack<String> tempStack = new Stack();
+    Stack<String> writeStack = new Stack();
 
 
 }
@@ -298,7 +299,24 @@ start : start start
         //WRITE (a+2, b+b, c);
         {
             if($SYSTEMFUNCTION.text.equals("WRITE")){
-                System.out.println($inputargs.text);
+                while(!writeStack.isEmpty()){
+                    String temp = writeStack.pop();
+                    if(ST.containsKey(temp)){
+                        if(ST.get(temp).getType().matches("INT")){
+                            IRList.add(";WRITEI " + temp);                     
+                        }else if(ST.get(temp).getType().matches("FLOAT")){
+                            IRList.add(";WRITEF " + temp);                     
+                        }else if(ST.get(temp).getType().matches("STRING")){
+                            IRList.add(";WRITES " + temp);                     
+                        }
+                    }else{
+                         
+                    }
+                }
+            }else{
+                while(!writeStack.isEmpty()){
+                    writeStack.pop();
+                }
             }
         }
 
@@ -443,13 +461,15 @@ else
 
  | ;
 inputargs : variable inputargs2 | ;                                                                            //WRITE(a, b)
-inputargs2 : ',' WS* IDENTIFIER inputargs2 | WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 | ;
+inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.push($IDENTIFIER.text); }| WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 | ;
 conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs | WS* COMPARISONOPERATOR WS* '('* variable ')'* conditionalargs2; 
 conditionalargs2 : WS* MATHOPERATOR WS* variable '('* conditionalargs2 ')'* | ;
 
 
 
-variable : IDENTIFIER|INTLITERAL|FLOATLITERAL | functionvariable;
+variable : IDENTIFIER { writeStack.push($IDENTIFIER.text); } 
+    |INTLITERAL { writeStack.push($INTLITERAL.text); } 
+    |FLOATLITERAL { writeStack.push($FLOATLITERAL.text); } | functionvariable;
 functionvariable : IDENTIFIER '(' inputargs ')';
 
 

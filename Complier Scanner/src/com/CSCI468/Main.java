@@ -25,7 +25,7 @@ public class Main {
         
         //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
        
-        //generateFiles();
+        generateFiles();
         
         ANTLRFileStream fileStream;
 
