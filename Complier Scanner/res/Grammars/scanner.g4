@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
     
     int numBlock = 0;
-    int registerCounter = 0;
+    int registerCounter = 1;
     int labelCounter = 1;
 
     ArrayList<String> textArray = new ArrayList<>();
@@ -218,8 +218,8 @@ start : start start
             //System.exit(0);
          }
         
-
-
+        IRList.add(";STOREI " + $INTLITERAL.text + " $T" + registerCounter);
+        IRList.add(";STOREI $T" + registerCounter++ + " " + $IDENTIFIER.text);
         }
         
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
@@ -248,7 +248,8 @@ start : start start
             System.exit(0);
             }
         
-
+        IRList.add(";STOREF " + $INTLITERAL.text + " $T" + registerCounter);
+        IRList.add(";STOREF $T" + registerCounter++ + " " + $IDENTIFIER.text);
             
         }
         
