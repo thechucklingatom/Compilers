@@ -462,7 +462,27 @@ else
  | ;
 inputargs : variable inputargs2 | ;                                                                            //WRITE(a, b)
 inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.push($IDENTIFIER.text); }| WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 | ;
-conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs | WS* COMPARISONOPERATOR WS* '('* variable ')'* conditionalargs2; 
+conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs 
+    | WS* COMPARISONOPERATOR WS* '('* variable ')'* conditionalargs2
+    {
+        if($COMPARISONOPERATOR.text.equals("<=")){
+            //add jump instruction here
+        }else if($COMPARISONOPERATOR.text.equals("==")){
+            //add jump instruction here
+        }else if($COMPARISONOPERATOR.text.equals("!=")){
+            //add jump instruction here
+        }else if($COMPARISONOPERATOR.text.equals(">=")){
+            //add jump instruction here
+        }else if($COMPARISONOPERATOR.text.equals("<=")){
+            //add jump instruction here
+        }else if($COMPARISONOPERATOR.text.equals("<")){
+            //add jump instruction here
+        }else if($COMPARISONOPERATOR.text.equals(">")){
+            //add jump instruction here
+        }else if($COMPARISONOPERATOR.text.equals("=")){
+            //add jump instruction here
+        }
+    }; 
 conditionalargs2 : WS* MATHOPERATOR WS* variable '('* conditionalargs2 ')'* | ;
 
 
