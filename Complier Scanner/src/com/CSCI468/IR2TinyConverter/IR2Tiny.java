@@ -9,8 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -286,16 +285,20 @@ public class IR2Tiny {
         
     }
     
-    public IR2Tiny(ArrayList<String> IRList){
-        outputList = new ArrayList();
-        convert(IRList);
+    public IR2Tiny(){
+        
     }
     
     public static void convert(ArrayList<String> arrIn){
         //Converting T vars to r vars
         outputList = new ArrayList();
+        
+        StringBuilder buffer = new StringBuilder();
+        for(String s : arrIn){
+            buffer.append(s).append("\n");
+        }
         try{
-        BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream)arrIn.stream()));
+        BufferedReader reader = new BufferedReader(new StringReader(buffer.toString()));
         vars = new ArrayList();
         int counter = 0;
         boolean hasNewline = false;

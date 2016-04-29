@@ -5,6 +5,7 @@ grammar scanner;
 import java.util.HashMap;
 import java.util.Stack;
 import java.util.ArrayList;
+import com.CSCI468.IR2TinyConverter.IR2Tiny;
 
 
 }
@@ -23,6 +24,7 @@ import java.util.ArrayList;
     static Stack<String> myStack = new Stack();
     static Stack<String> tempStack = new Stack();
     Stack<String> writeStack = new Stack();
+    IR2Tiny irConverter = new IR2Tiny();
 
 
 }
@@ -36,11 +38,13 @@ for (String s : textArray)
 {
 System.out.println(s);
 
-
-
 }
 
+for(String s : IRList){
+    System.out.println(s);                         
+}
 
+irConverter.convert(IRList);
 
 
 
