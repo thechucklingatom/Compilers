@@ -292,9 +292,19 @@ start : start start
                 //var declaration happening here, instead of the other two places
                 //fixing the store.
                 System.out.println("var declaration");
-                while(!writeStack.isEmpty()){
-                    System.out.println(writeStack.remove());
+                PriorityBlockingQueue<String> temp = new PriorityBlockingQueue<>();
+                boolean varAssignment = false;
+                while(!writeStack.isEmpty()){ 
+                    if(writeStack.size() == 1 && STC.containsKey(writeStack.peek())){
+                        varAssignment = true;                           
+                    }
+                    temp.add(writeStack.remove());
                 }
+                
+                if(varAssignment && temp.size() == 2){
+                    
+                }
+                
             }                                                                       
          //c:=(a*3+i)+p*p+5+j+k+3+y*u/r;
 {
