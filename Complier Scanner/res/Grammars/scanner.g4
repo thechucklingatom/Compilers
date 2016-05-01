@@ -35,11 +35,11 @@ pre : start EOF {
 
 //Pop global String stack here
 
-for (String s : textArray)
-{
-System.out.println(s);
+//for (String s : textArray)
+//{
+//System.out.println(s);
 
-}
+//}
 IRList.add(";RET");
 IRList.add(";tiny code");
 for(String s : IRList){
@@ -315,7 +315,7 @@ start : start start
                     }else if(ST.get(var).getType().matches("STRING")){                     
                     }
                 }else if(varAssignment && temp.size() > 2){
-                    System.out.println("Large assignment, maybe math");
+                    //System.out.println("Large assignment, maybe math");
                     
                     while(temp.size() > 0){
                         String mathOperation = temp.remove();
