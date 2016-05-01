@@ -353,7 +353,7 @@ public class IR2Tiny {
                 hasNewline = true;
                 }
 
-                 else if (temp.matches("LABEL [\\$A-Za-z0-9]*"))
+                 else if (temp.matches(";LABEL [\\$A-Za-z0-9]*"))
                 {
                 labelCount++;
                 }

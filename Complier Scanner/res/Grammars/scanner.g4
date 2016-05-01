@@ -78,7 +78,8 @@ start : start start
         //BEGIN
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        | SCOPEEND WS
+        | SCOPEEND WS { //IRList.add(";LABEL label" + labelCounter++);
+                       }
         //ENDWHILE
 
         {myStack.pop();}
