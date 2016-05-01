@@ -40,7 +40,8 @@ for (String s : textArray)
 System.out.println(s);
 
 }
-
+IRList.add(";RET");
+IRList.add(";tiny code");
 for(String s : IRList){
     System.out.println(s);                         
 }
@@ -274,6 +275,7 @@ start : start start
          String text = (System.lineSeparator() + "Symbol table " + $IDENTIFIER.text);
          tempStack.push(text);
          IRList.add(";LABEL " + $IDENTIFIER.text);
+         IRList.add(";LINK");
         //POP Stack here
          while (!tempStack.empty())
         {
