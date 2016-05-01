@@ -316,6 +316,11 @@ start : start start
                     }
                 }else if(varAssignment && temp.size() > 2){
                     System.out.println("Large assignment, maybe math");
+                    
+                    while(temp.size() > 0){
+                        System.out.println(temp.remove());                         
+                    }
+                    
                 }else if(temp.size() == 1){
                     String literal = temp.remove();
                     if(ST.get($IDENTIFIER.text).getType().matches("INT")){
