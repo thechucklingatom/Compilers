@@ -781,7 +781,24 @@ public class scannerParser extends Parser {
 				                    System.out.println("Large assignment, maybe math");
 				                    
 				                    while(temp.size() > 0){
-				                        System.out.println(temp.remove());                         
+				                        String mathOperation = temp.remove();
+				                        if(ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).getType().matches("INT")){
+				                            if("+".equals(mathOperation)){
+				                                IRList.add(";ADDI " + temp.remove() + " " + temp.remove() + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				                            }else if("*".equals(mathOperation)){
+				                                IRList.add(";MULTI " + temp.remove() + " " + temp.remove() + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				                            }else if("\\".equals(mathOperation)){
+				                                IRList.add(";DIVI " + temp.remove() + " " + temp.remove() + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				                            }
+				                        }else if(ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).getType().matches("FLOAT")){
+				                            if("+".equals(mathOperation)){
+				                                IRList.add(";ADDF " + temp.remove() + " " + temp.remove() + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				                            }else if("*".equals(mathOperation)){
+				                                IRList.add(";MULTF " + temp.remove() + " " + temp.remove() + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				                            }else if("\\".equals(mathOperation)){
+				                                IRList.add(";DIVF " + temp.remove() + " " + temp.remove() + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				                            }
+				                        }
 				                    }
 				                    
 				                }else if(temp.size() == 1){
