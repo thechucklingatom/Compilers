@@ -301,7 +301,7 @@ start : start start
                     }
                     temp.add(writeStack.remove());
                 }
-                //incorrect 
+                //incorrect need to refactor to make math operations work.
                 if(varAssignment && temp.size() == 2){
                     String literal = temp.remove();
                     String var = temp.remove();
@@ -464,7 +464,7 @@ floatvariabledeclaration : ',' WS* IDENTIFIER floatvariabledeclaration
 }
 | ';' WS;
 
-mathoperation : ';' WS | WS* MATHOPERATOR WS* '('* variable ')'* mathoperation;
+mathoperation : ';' WS | WS* MATHOPERATOR WS* '('* variable ')'* mathoperation { writeStack.add($MATHOPERATOR.text); };
 functionargs : (INTTYPE | FLOATTYPE) WS IDENTIFIER functionargs2
 {
 
@@ -514,7 +514,7 @@ else
  | ;
 inputargs : variable inputargs2 | ;                                                                            //WRITE(a, b)
 inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.add($IDENTIFIER.text); }| WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 { writeStack.add($MATHOPERATOR.text); } | ;
-conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs 
+conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs { writeStack.add($MATHOPERATOR.text); }
     | WS* COMPARISONOPERATOR WS* '('* variable ')'* conditionalargs2
     {
         if($COMPARISONOPERATOR.text.equals("<=")){
@@ -535,7 +535,7 @@ conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs
             //add jump instruction here
         }
     }; 
-conditionalargs2 : WS* MATHOPERATOR WS* variable '('* conditionalargs2 ')'* | ;
+conditionalargs2 : WS* MATHOPERATOR WS* variable '('* conditionalargs2 ')'* { writeStack.add($MATHOPERATOR.text); } | ;
 
 
 
