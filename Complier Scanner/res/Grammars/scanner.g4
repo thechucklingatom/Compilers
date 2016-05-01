@@ -301,7 +301,7 @@ start : start start
                     }
                     temp.add(writeStack.remove());
                 }
-                
+                //incorrect 
                 if(varAssignment && temp.size() == 2){
                     String literal = temp.remove();
                     String var = temp.remove();
@@ -313,8 +313,18 @@ start : start start
                         IRList.add(";STOREF \$T" + registerCounter++ + " " + var);      
                     }else if(ST.get(var).getType().matches("STRING")){                     
                     }
-                }else if(varAssignment && temp.size() == 2){
+                }else if(varAssignment && temp.size() > 2){
                     System.out.println("Large assignment, maybe math");
+                }else if(temp.size() == 1){
+                    String literal = temp.remove();
+                    if(ST.get($IDENTIFIER.text).getType().matches("INT")){
+                        IRList.add(";STOREI " + literal + " \$T" + registerCounter);
+                        IRList.add(";STOREI \$T" + registerCounter++ + " " + $IDENTIFIER.text);                    
+                    }else if(ST.get($IDENTIFIER.text).getType().matches("FLOAT")){
+                        IRList.add(";STOREF " + literal + " \$T" + registerCounter);
+                        IRList.add(";STOREF \$T" + registerCounter++ + " " + $IDENTIFIER.text);      
+                    }else if(ST.get($IDENTIFIER.text).getType().matches("STRING")){                     
+                    }
                 }
                 
             }                                                                       

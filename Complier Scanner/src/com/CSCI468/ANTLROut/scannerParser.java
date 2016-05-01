@@ -755,7 +755,6 @@ public class scannerParser extends Parser {
 
 				                //var declaration happening here, instead of the other two places
 				                //fixing the store.
-				                System.out.println("var declaration");
 				                PriorityBlockingQueue<String> temp = new PriorityBlockingQueue<>();
 				                boolean varAssignment = false;
 				                while(!writeStack.isEmpty()){ 
@@ -764,7 +763,7 @@ public class scannerParser extends Parser {
 				                    }
 				                    temp.add(writeStack.remove());
 				                }
-				                
+				                //incorrect 
 				                if(varAssignment && temp.size() == 2){
 				                    String literal = temp.remove();
 				                    String var = temp.remove();
@@ -776,8 +775,18 @@ public class scannerParser extends Parser {
 				                        IRList.add(";STOREF $T" + registerCounter++ + " " + var);      
 				                    }else if(ST.get(var).getType().matches("STRING")){                     
 				                    }
-				                }else if(varAssignment && temp.size() == 2){
+				                }else if(varAssignment && temp.size() > 2){
 				                    System.out.println("Large assignment, maybe math");
+				                }else if(temp.size() == 1){
+				                    String literal = temp.remove();
+				                    if(ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).getType().matches("INT")){
+				                        IRList.add(";STOREI " + literal + " $T" + registerCounter);
+				                        IRList.add(";STOREI $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));                    
+				                    }else if(ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).getType().matches("FLOAT")){
+				                        IRList.add(";STOREF " + literal + " $T" + registerCounter);
+				                        IRList.add(";STOREF $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));      
+				                    }else if(ST.get((((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null)).getType().matches("STRING")){                     
+				                    }
 				                }
 				                
 				            
