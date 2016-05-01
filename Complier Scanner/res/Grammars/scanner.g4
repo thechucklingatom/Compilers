@@ -534,21 +534,17 @@ conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs { writeStack.add
         String rightHandSide = writeStack.remove();
         String leftHandSide = writeStack.remove();
         if($COMPARISONOPERATOR.text.equals("<=")){
-            //add jump instruction here
+            IRList.add(";GT " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
         }else if($COMPARISONOPERATOR.text.equals("==")){
-            //add jump instruction here
+            IRList.add(";NE " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
         }else if($COMPARISONOPERATOR.text.equals("!=")){
-            //add jump instruction here
+            IRList.add(";EQ " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
         }else if($COMPARISONOPERATOR.text.equals(">=")){
-            //add jump instruction here
-        }else if($COMPARISONOPERATOR.text.equals("<=")){
-            //add jump instruction here
+            IRList.add(";LT " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
         }else if($COMPARISONOPERATOR.text.equals("<")){
-            //add jump instruction here
+            IRList.add(";GE " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
         }else if($COMPARISONOPERATOR.text.equals(">")){
-            //add jump instruction here
-        }else if($COMPARISONOPERATOR.text.equals("=")){
-            //add jump instruction here
+            IRList.add(";LE " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
         }
     }; 
 conditionalargs2 : WS* MATHOPERATOR WS* variable '('* conditionalargs2 ')'* { writeStack.add($MATHOPERATOR.text); } | ;

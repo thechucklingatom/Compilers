@@ -1924,21 +1924,17 @@ public class scannerParser extends Parser {
 				        String rightHandSide = writeStack.remove();
 				        String leftHandSide = writeStack.remove();
 				        if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("<=")){
-				            //add jump instruction here
+				            IRList.add(";GT " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
 				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("==")){
-				            //add jump instruction here
+				            IRList.add(";NE " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
 				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("!=")){
-				            //add jump instruction here
+				            IRList.add(";EQ " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
 				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals(">=")){
-				            //add jump instruction here
-				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("<=")){
-				            //add jump instruction here
+				            IRList.add(";LT " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
 				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("<")){
-				            //add jump instruction here
+				            IRList.add(";GE " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
 				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals(">")){
-				            //add jump instruction here
-				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("=")){
-				            //add jump instruction here
+				            IRList.add(";LE " + leftHandSide + " " + rightHandSide + " LABEL" + (labelCounter + 1));
 				        }
 				    
 				}
