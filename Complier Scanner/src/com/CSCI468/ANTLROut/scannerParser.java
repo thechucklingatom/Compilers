@@ -769,11 +769,11 @@ public class scannerParser extends Parser {
 				                    String literal = temp.remove();
 				                    String var = temp.remove();
 				                    if(ST.get(var).getType().matches("INT")){
-				                        IRList.add(";STOREI " + (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null) + " $T" + registerCounter);
-				                        IRList.add(";STOREI $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));                    
+				                        IRList.add(";STOREI " + literal + " $T" + registerCounter);
+				                        IRList.add(";STOREI $T" + registerCounter++ + " " + var);                    
 				                    }else if(ST.get(var).getType().matches("FLOAT")){
-				                        IRList.add(";STOREF " + (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null) + " $T" + registerCounter);
-				                        IRList.add(";STOREF $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));      
+				                        IRList.add(";STOREF " + literal + " $T" + registerCounter);
+				                        IRList.add(";STOREF $T" + registerCounter++ + " " + var);      
 				                    }else if(ST.get(var).getType().matches("STRING")){                     
 				                    }
 				                }

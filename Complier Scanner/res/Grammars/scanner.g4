@@ -307,11 +307,11 @@ start : start start
                     String literal = temp.remove();
                     String var = temp.remove();
                     if(ST.get(var).getType().matches("INT")){
-                        IRList.add(";STOREI " + $INTLITERAL.text + " \$T" + registerCounter);
-                        IRList.add(";STOREI \$T" + registerCounter++ + " " + $IDENTIFIER.text);                    
+                        IRList.add(";STOREI " + literal + " \$T" + registerCounter);
+                        IRList.add(";STOREI \$T" + registerCounter++ + " " + var);                    
                     }else if(ST.get(var).getType().matches("FLOAT")){
-                        IRList.add(";STOREF " + $INTLITERAL.text + " \$T" + registerCounter);
-                        IRList.add(";STOREF \$T" + registerCounter++ + " " + $IDENTIFIER.text);      
+                        IRList.add(";STOREF " + literal + " \$T" + registerCounter);
+                        IRList.add(";STOREF \$T" + registerCounter++ + " " + var);      
                     }else if(ST.get(var).getType().matches("STRING")){                     
                     }
                 }
