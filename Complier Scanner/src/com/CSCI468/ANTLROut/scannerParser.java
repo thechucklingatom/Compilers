@@ -763,7 +763,7 @@ public class scannerParser extends Parser {
 				                    }
 				                    temp.add(writeStack.remove());
 				                }
-				                //incorrect 
+				                //incorrect need to refactor to make math operations work.
 				                if(varAssignment && temp.size() == 2){
 				                    String literal = temp.remove();
 				                    String var = temp.remove();
@@ -853,6 +853,20 @@ public class scannerParser extends Parser {
 				                            IRList.add(";WRITEF " + temp);                     
 				                        }else if(ST.get(temp).getType().matches("STRING")){
 				                            IRList.add(";WRITES " + temp);                     
+				                        }
+				                    }else{
+				                         
+				                    }
+				                }
+				            }else if((((StartContext)_localctx).SYSTEMFUNCTION!=null?((StartContext)_localctx).SYSTEMFUNCTION.getText():null).equals("READ")){
+				                while(!writeStack.isEmpty()){
+				                    String temp = writeStack.remove();
+				                    if(ST.containsKey(temp)){
+				                        if(ST.get(temp).getType().matches("INT")){
+				                            IRList.add(";READI " + temp);                     
+				                        }else if(ST.get(temp).getType().matches("FLOAT")){
+				                            IRList.add(";READF " + temp);                     
+				                        }else if(ST.get(temp).getType().matches("STRING")){                 
 				                        }
 				                    }else{
 				                         
@@ -1907,6 +1921,8 @@ public class scannerParser extends Parser {
 				setState(377);
 				conditionalargs2();
 
+				        String rightHandSide = writeStack.remove();
+				        String leftHandSide = writeStack.remove();
 				        if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("<=")){
 				            //add jump instruction here
 				        }else if((((ConditionalargsContext)_localctx).COMPARISONOPERATOR!=null?((ConditionalargsContext)_localctx).COMPARISONOPERATOR.getText():null).equals("==")){

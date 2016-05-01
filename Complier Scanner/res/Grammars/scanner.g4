@@ -363,6 +363,20 @@ start : start start
                          
                     }
                 }
+            }else if($SYSTEMFUNCTION.text.equals("READ")){
+                while(!writeStack.isEmpty()){
+                    String temp = writeStack.remove();
+                    if(ST.containsKey(temp)){
+                        if(ST.get(temp).getType().matches("INT")){
+                            IRList.add(";READI " + temp);                     
+                        }else if(ST.get(temp).getType().matches("FLOAT")){
+                            IRList.add(";READF " + temp);                     
+                        }else if(ST.get(temp).getType().matches("STRING")){                 
+                        }
+                    }else{
+                         
+                    }
+                }
             }else{
                 while(!writeStack.isEmpty()){
                     writeStack.remove();
@@ -517,6 +531,8 @@ inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.add($IDENTIFIER.text); }
 conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs { writeStack.add($MATHOPERATOR.text); }
     | WS* COMPARISONOPERATOR WS* '('* variable ')'* conditionalargs2
     {
+        String rightHandSide = writeStack.remove();
+        String leftHandSide = writeStack.remove();
         if($COMPARISONOPERATOR.text.equals("<=")){
             //add jump instruction here
         }else if($COMPARISONOPERATOR.text.equals("==")){
