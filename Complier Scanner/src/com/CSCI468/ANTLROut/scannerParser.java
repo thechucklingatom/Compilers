@@ -776,6 +776,8 @@ public class scannerParser extends Parser {
 				                        IRList.add(";STOREF $T" + registerCounter++ + " " + var);      
 				                    }else if(ST.get(var).getType().matches("STRING")){                     
 				                    }
+				                }else if(varAssignment && temp.size() == 2){
+				                    System.out.println("Large assignment, maybe math");
 				                }
 				                
 				            

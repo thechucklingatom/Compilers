@@ -312,7 +312,7 @@ public class IR2Tiny {
             String temp;
             while ((temp = reader.readLine()) != null) {
                 String[] dataRows=temp.split(" ");
-                if(temp.matches("STOREI [$A-Za-z0-9]* [A-Za-z]*")){
+                if(temp.matches(";STOREI [$A-Za-z0-9]* [A-Za-z]*")){
                     if (vars.contains(dataRows[dataRows.length-1])){
 
                     }else{
@@ -321,7 +321,7 @@ public class IR2Tiny {
                     }
 
                 }
-                if(temp.matches("STOREF [$A-Za-z0-9]* [A-Za-z]*")){
+                if(temp.matches(";STOREF [$A-Za-z0-9]* [A-Za-z]*")){
                     if (vars.contains(dataRows[dataRows.length-1])){
 
                     }else{
@@ -330,7 +330,7 @@ public class IR2Tiny {
                     }
 
                 }
-                else if (temp.matches("READI [A-Za-z]*"))
+                else if (temp.matches(";READI [A-Za-z]*"))
                 {
                     if (vars.contains(dataRows[dataRows.length-1])){
 
@@ -339,7 +339,7 @@ public class IR2Tiny {
                         vars.add(dataRows[dataRows.length-1]);
                     }      
                 }
-                else if (temp.matches("WRITEF [A-Za-z]*"))
+                else if (temp.matches(";WRITEF [A-Za-z]*"))
                 {
                     if (vars.contains(dataRows[dataRows.length-1])){
 
@@ -348,7 +348,7 @@ public class IR2Tiny {
                         vars.add(dataRows[dataRows.length-1]);
                     }       
                 }            
-                else if (temp.matches("WRITES newline") && hasNewline == false)
+                else if (temp.matches(";WRITES newline") && hasNewline == false)
                 {
                 hasNewline = true;
                 }
@@ -374,80 +374,80 @@ public class IR2Tiny {
 
             while((temp = reader.readLine()) != null){
                 ArrayList<String> arr;
-                if(temp.matches("STOREI [\\$A-Za-z0-9 ]*" )){
+                if(temp.matches(";STOREI [\\$A-Za-z0-9 ]*" )){
 
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("STOREF [\\$A-Za-z0-9. ]*" )){
+                else if(temp.matches(";STOREF [\\$A-Za-z0-9. ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("MULTI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";MULTI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("MULTF [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";MULTF [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("ADDI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";ADDI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("ADDF [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";ADDF [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("DIVI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";DIVI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("DIVF [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";DIVF [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("GTI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";GTI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("NEI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";NEI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("EQI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";EQI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }   
-                else if(temp.matches("LEI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";LEI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("LEF [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";LEF [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("GEF [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";GEF [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("GEI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";GEI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("WRITEI [\\$A-Za-z0-9]*" )){
+                else if(temp.matches(";WRITEI [\\$A-Za-z0-9]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("WRITEF [\\$A-Za-z0-9]*" )){
+                else if(temp.matches(";WRITEF [\\$A-Za-z0-9]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("SUBI [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";SUBI [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
-                else if(temp.matches("SUBF [\\$A-Za-z0-9 ]*" )){
+                else if(temp.matches(";SUBF [\\$A-Za-z0-9 ]*" )){
                     arr = new ArrayList<String>(Arrays.asList(temp.split(" ")));
                     convert(arr);
                 }
@@ -456,26 +456,26 @@ public class IR2Tiny {
 
 
                 //Only print label main if there exists other labels within the program.
-                else if (temp.matches("LABEL [\\$A-Za-z0-9]*") && labelCount > 1)
+                else if (temp.matches(";LABEL [\\$A-Za-z0-9]*") && labelCount > 1)
                 {
                 String[] labelName = temp.split(" ");
                 outputList.add("label");
                 outputList.add(labelName[labelName.length-1]);
                 }
-                else if (temp.matches("JUMP [\\$A-Za-z0-9]*"))
+                else if (temp.matches(";JUMP [\\$A-Za-z0-9]*"))
                 {
                 String[] labelName = temp.split(" ");
                 outputList.add("jmp");
                 outputList.add(labelName[labelName.length-1]);
                 }            
 
-                else if (temp.matches("WRITES newline"))
+                else if (temp.matches(";WRITES newline"))
                 {
                 outputList.add("sys");
                 outputList.add("writes"); 
                 outputList.add("newline"); 
                 }
-                else if (temp.matches("READI [A-Za-z]"))
+                else if (temp.matches(";READI [A-Za-z]"))
                 {
                 String[] varName = temp.split(" ");   
                 outputList.add("sys");
@@ -576,12 +576,12 @@ public class IR2Tiny {
             }
             
                 //STOREI to move
-                else if (arr.get(i).matches("STOREI")){
+                else if (arr.get(i).matches(";STOREI")){
                 arr.set(i,"move");
                 //System.out.println(arr[i]);
                 }
                 //STOREF to move
-                else if (arr.get(i).matches("STOREF")){
+                else if (arr.get(i).matches(";STOREF")){
                 arr.set(i,"move");
                 //System.out.println(arr[i]);
                 String var1 = arr.get(i+1);
@@ -611,7 +611,7 @@ public class IR2Tiny {
                 }
                 }
                 //SUBI to move and subi
-                else if (arr.get(i).matches("SUBI")){
+                else if (arr.get(i).matches(";SUBI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -624,7 +624,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //SUBF to move and subr
-                else if (arr.get(i).matches("SUBF")){
+                else if (arr.get(i).matches(";SUBF")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -637,7 +637,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //MULTI to move and muli
-                else if (arr.get(i).matches("MULTI")){
+                else if (arr.get(i).matches(";MULTI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -650,7 +650,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //MULTF to move and mulr
-                else if (arr.get(i).matches("MULTF")){
+                else if (arr.get(i).matches(";MULTF")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -663,7 +663,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //ADDI to move and addi
-                else if (arr.get(i).matches("ADDI")){
+                else if (arr.get(i).matches(";ADDI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -676,7 +676,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //ADDF to move and addr
-                else if (arr.get(i).matches("ADDF")){
+                else if (arr.get(i).matches(";ADDF")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -690,7 +690,7 @@ public class IR2Tiny {
                 }
             
                 //Divi to move and divi
-                else if (arr.get(i).matches("DIVI")){
+                else if (arr.get(i).matches(";DIVI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -703,7 +703,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //DIVF to move and divr
-                else if (arr.get(i).matches("DIVF")){
+                else if (arr.get(i).matches(";DIVF")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -716,7 +716,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //GTI to cmpi and jgt
-                else if (arr.get(i).matches("GTI")){
+                else if (arr.get(i).matches(";GTI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -727,7 +727,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jgt");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches("NEI")){
+                else if (arr.get(i).matches(";NEI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -738,7 +738,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jne");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches("EQI")){
+                else if (arr.get(i).matches(";EQI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -749,7 +749,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jeq");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches("LEI")){
+                else if (arr.get(i).matches(";LEI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -760,7 +760,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jle");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches("GEI")){
+                else if (arr.get(i).matches(";GEI")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -771,7 +771,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jge");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches("LEF")){
+                else if (arr.get(i).matches(";LEF")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -782,7 +782,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jle");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches("GEF")){
+                else if (arr.get(i).matches(";GEF")){
                  if (gefSwapRegister == -1)   //Only define the swap register once
                  {
                      if (variableSwapRegister == -1)
@@ -810,14 +810,14 @@ public class IR2Tiny {
                 arr.add(i+7, var3);
                 }
                 //Spaces appear inconsistant after the writei
-                else if (arr.get(i).matches("WRITEI"))
+                else if (arr.get(i).matches(";WRITEI"))
                 {
                 String var1 = arr.get(i+1);
                 arr.set(i, "sys");
                 arr.set(i+1, "writei");
                 arr.add(i+2, var1);
                 }
-                else if (arr.get(i).matches("WRITEF"))
+                else if (arr.get(i).matches(";WRITEF"))
                 {
                 String var1 = arr.get(i+1);
                 arr.set(i, "sys");

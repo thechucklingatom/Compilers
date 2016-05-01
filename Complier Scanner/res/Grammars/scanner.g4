@@ -293,7 +293,6 @@ start : start start
             {
                 //var declaration happening here, instead of the other two places
                 //fixing the store.
-                System.out.println("var declaration");
                 PriorityBlockingQueue<String> temp = new PriorityBlockingQueue<>();
                 boolean varAssignment = false;
                 while(!writeStack.isEmpty()){ 
@@ -314,6 +313,8 @@ start : start start
                         IRList.add(";STOREF \$T" + registerCounter++ + " " + var);      
                     }else if(ST.get(var).getType().matches("STRING")){                     
                     }
+                }else if(varAssignment && temp.size() == 2){
+                    System.out.println("Large assignment, maybe math");
                 }
                 
             }                                                                       
