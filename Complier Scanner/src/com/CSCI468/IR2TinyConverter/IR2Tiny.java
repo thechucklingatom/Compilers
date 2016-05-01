@@ -716,7 +716,7 @@ public class IR2Tiny {
                 arr.add(i+5, var3);
                 }
                 //GTI to cmpi and jgt
-                else if (arr.get(i).matches(";GTI")){
+                else if (arr.get(i).matches(";GT")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -727,7 +727,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jgt");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches(";NEI")){
+                else if (arr.get(i).matches(";NE")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -738,7 +738,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jne");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches(";EQI")){
+                else if (arr.get(i).matches(";EQ")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -749,7 +749,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jeq");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches(";LEI")){
+                else if (arr.get(i).matches(";LE")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
@@ -760,7 +760,7 @@ public class IR2Tiny {
                 arr.set(i+3, "jle");
                 arr.add(i+4, var3);
                 }
-                else if (arr.get(i).matches(";GEI")){
+                else if (arr.get(i).matches(";GE")){
                 String var1 = arr.get(i+1);
                 String var2 = arr.get(i+2);    
                 String var3 = arr.get(i+3);    
