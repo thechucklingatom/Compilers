@@ -25,14 +25,14 @@ public class Main {
         
         //uncomment if you change grammar, it ends the program so you can't have it if you want to check the parser
        
-        generateFiles();
+        //generateFiles();
         
         ANTLRFileStream fileStream;
 
        try{
             fileStream = new ANTLRFileStream(args[0]);
         }catch(ArrayIndexOutOfBoundsException ex){
-            fileStream = new ANTLRFileStream("res/Step3/inputs/test8.micro");
+            fileStream = new ANTLRFileStream("res/Step4/inputs/step4_testcase.micro");
         }
         ANTLRInputStream in = new ANTLRInputStream("hello");
 

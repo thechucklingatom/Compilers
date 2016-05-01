@@ -4,6 +4,7 @@ grammar scanner;
 
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.ArrayList;
 import com.CSCI468.IR2TinyConverter.IR2Tiny;
 
@@ -23,7 +24,7 @@ import com.CSCI468.IR2TinyConverter.IR2Tiny;
     public HashMap<String, STC> ST = new HashMap();
     static Stack<String> myStack = new Stack();
     static Stack<String> tempStack = new Stack();
-    Stack<String> writeStack = new Stack();
+    PriorityBlockingQueue<String> writeStack = new PriorityBlockingQueue();
     IR2Tiny irConverter = new IR2Tiny();
 
 
@@ -286,7 +287,15 @@ start : start start
 
         
 
-        | IDENTIFIER WS* ':=' WS* '('* variable ')'* mathoperation                                                                         
+        | IDENTIFIER WS* ':=' WS* '('* variable ')'* mathoperation  
+            {
+                //var declaration happening here, instead of the other two places
+                //fixing the store.
+                System.out.println("var declaration");
+                while(!writeStack.isEmpty()){
+                    System.out.println(writeStack.remove());
+                }
+            }                                                                       
          //c:=(a*3+i)+p*p+5+j+k+3+y*u/r;
 {
 
@@ -296,6 +305,11 @@ start : start start
 //////////////////////////////////////////////////////////////////////////////////////////////////        
 
         | 'RETURN' WS variable mathoperation
+            {
+                while(!writeStack.isEmpty()){
+                    writeStack.remove();
+                }
+            } 
         // RETURN F(n-1, n-2)+F(n-2);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,7 +318,7 @@ start : start start
         {
             if($SYSTEMFUNCTION.text.equals("WRITE")){
                 while(!writeStack.isEmpty()){
-                    String temp = writeStack.pop();
+                    String temp = writeStack.remove();
                     if(ST.containsKey(temp)){
                         if(ST.get(temp).getType().matches("INT")){
                             IRList.add(";WRITEI " + temp);                     
@@ -319,7 +333,7 @@ start : start start
                 }
             }else{
                 while(!writeStack.isEmpty()){
-                    writeStack.pop();
+                    writeStack.remove();
                 }
             }
         }
@@ -337,7 +351,9 @@ start : start start
         
         IRList.add(";LABEL label" + labelCounter++);
 
-
+        while(!writeStack.isEmpty()){
+            writeStack.remove();
+        }
 
 
         }
@@ -465,7 +481,7 @@ else
 
  | ;
 inputargs : variable inputargs2 | ;                                                                            //WRITE(a, b)
-inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.push($IDENTIFIER.text); }| WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 | ;
+inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.add($IDENTIFIER.text); }| WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 | ;
 conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs 
     | WS* COMPARISONOPERATOR WS* '('* variable ')'* conditionalargs2
     {
@@ -491,9 +507,9 @@ conditionalargs2 : WS* MATHOPERATOR WS* variable '('* conditionalargs2 ')'* | ;
 
 
 
-variable : IDENTIFIER { writeStack.push($IDENTIFIER.text); } 
-    |INTLITERAL { writeStack.push($INTLITERAL.text); } 
-    |FLOATLITERAL { writeStack.push($FLOATLITERAL.text); } | functionvariable;
+variable : IDENTIFIER { writeStack.add($IDENTIFIER.text); } 
+    |INTLITERAL { writeStack.add($INTLITERAL.text); } 
+    |FLOATLITERAL { writeStack.add($FLOATLITERAL.text); } | functionvariable;
 functionvariable : IDENTIFIER '(' inputargs ')';
 
 
