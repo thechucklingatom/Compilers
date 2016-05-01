@@ -165,7 +165,8 @@ public class scannerParser extends Parser {
 			System.out.println(s);
 
 			}
-
+			IRList.add(";RET");
+			IRList.add(";tiny code");
 			for(String s : IRList){
 			    System.out.println(s);                         
 			}
@@ -673,6 +674,7 @@ public class scannerParser extends Parser {
 				         String text = (System.lineSeparator() + "Symbol table " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
 				         tempStack.push(text);
 				         IRList.add(";LABEL " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));
+				         IRList.add(";LINK");
 				        //POP Stack here
 				         while (!tempStack.empty())
 				        {
@@ -754,9 +756,28 @@ public class scannerParser extends Parser {
 				                //var declaration happening here, instead of the other two places
 				                //fixing the store.
 				                System.out.println("var declaration");
-				                while(!writeStack.isEmpty()){
-				                    System.out.println(writeStack.remove());
+				                PriorityBlockingQueue<String> temp = new PriorityBlockingQueue<>();
+				                boolean varAssignment = false;
+				                while(!writeStack.isEmpty()){ 
+				                    if(writeStack.size() == 1 && ST.containsKey(writeStack.peek())){
+				                        varAssignment = true;                           
+				                    }
+				                    temp.add(writeStack.remove());
 				                }
+				                
+				                if(varAssignment && temp.size() == 2){
+				                    String literal = temp.remove();
+				                    String var = temp.remove();
+				                    if(ST.get(var).getType().matches("INT")){
+				                        IRList.add(";STOREI " + (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null) + " $T" + registerCounter);
+				                        IRList.add(";STOREI $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));                    
+				                    }else if(ST.get(var).getType().matches("FLOAT")){
+				                        IRList.add(";STOREF " + (((StartContext)_localctx).INTLITERAL!=null?((StartContext)_localctx).INTLITERAL.getText():null) + " $T" + registerCounter);
+				                        IRList.add(";STOREF $T" + registerCounter++ + " " + (((StartContext)_localctx).IDENTIFIER!=null?((StartContext)_localctx).IDENTIFIER.getText():null));      
+				                    }else if(ST.get(var).getType().matches("STRING")){                     
+				                    }
+				                }
+				                
 				            
 
 
