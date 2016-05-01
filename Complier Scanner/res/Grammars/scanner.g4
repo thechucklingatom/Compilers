@@ -513,7 +513,7 @@ else
 
  | ;
 inputargs : variable inputargs2 | ;                                                                            //WRITE(a, b)
-inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.add($IDENTIFIER.text); }| WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 | ;
+inputargs2 : ',' WS* IDENTIFIER inputargs2 { writeStack.add($IDENTIFIER.text); }| WS* MATHOPERATOR WS* '('* variable ')'* inputargs2 { writeStack.add($MATHOPERATOR.text); } | ;
 conditionalargs : WS* MATHOPERATOR WS* variable conditionalargs 
     | WS* COMPARISONOPERATOR WS* '('* variable ')'* conditionalargs2
     {
