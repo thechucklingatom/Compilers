@@ -44,7 +44,7 @@ for(String s : IRList){
     System.out.println(s);                         
 }
 
-irConverter.convert(IRList);
+irConverter.startConversion(IRList);
 
 
 

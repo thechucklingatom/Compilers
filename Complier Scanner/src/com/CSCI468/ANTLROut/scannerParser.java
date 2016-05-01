@@ -169,7 +169,7 @@ public class scannerParser extends Parser {
 			    System.out.println(s);                         
 			}
 
-			irConverter.convert(IRList);
+			irConverter.startConversion(IRList);
 
 
 
